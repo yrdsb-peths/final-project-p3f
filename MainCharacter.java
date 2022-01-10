@@ -31,6 +31,7 @@ public class MainCharacter extends Actor
     public void act()
     {
         checkKeys();
+        keepInWorld();
     }
     
     private void checkKeys(){
@@ -84,6 +85,21 @@ public class MainCharacter extends Actor
                 setLocation(getX() - deltaD, getY());
             }
             if(j > 0) j--;
+        }
+    }
+    
+    private void keepInWorld(){
+        if(getX() > 575){
+            setLocation(575, getY());
+        }
+        else if(getX() < 25){
+            setLocation(25, getY());
+        }
+        else if(getY() > 370){
+            setLocation(getX(), 370);
+        }
+        else if(getY() < 30){
+            setLocation(getX(), 30);
         }
     }
 }
