@@ -13,7 +13,7 @@ public class MainCharacter extends Actor
     private GreenfootImage[] rightWalkCycle = new GreenfootImage[4];
     private GreenfootImage[] leftWalkCycle = new GreenfootImage[4];
     
-    private int j = 3, deltaD = 5, upCycleFrame = 0, downCycleFrame = 0, leftCycleFrame = 0, rightCycleFrame = 0; 
+    private int j = 3, deltaD = 10, upCycleFrame = 0, downCycleFrame = 0, leftCycleFrame = 0, rightCycleFrame = 0; 
     
     public void addedToWorld(World MyWorld)
     {
@@ -30,9 +30,13 @@ public class MainCharacter extends Actor
      */
     public void act()
     {
+        checkKeys();
+    }
+    
+    private void checkKeys(){
         if(Greenfoot.isKeyDown("w"))
         {
-            if(j == 0)j = 6;
+            if(j == 0)j = 3;
             if(j == 1)
             {
                 setImage(upWalkCycle[upCycleFrame]);
@@ -43,9 +47,9 @@ public class MainCharacter extends Actor
             if(j > 0) j--;
         }
         
-        if(Greenfoot.isKeyDown("s"))
+        else if(Greenfoot.isKeyDown("s"))
         {
-            if(j == 0)j = 6;
+            if(j == 0)j = 3;
             if(j == 1)
             {
                 setImage(downWalkCycle[downCycleFrame]);
@@ -56,9 +60,9 @@ public class MainCharacter extends Actor
             if(j > 0) j--;
         }
         
-        if(Greenfoot.isKeyDown("d"))
+        else if(Greenfoot.isKeyDown("d"))
         {
-            if(j == 0)j = 6;
+            if(j == 0)j = 3;
             if(j == 1)
             {
                 setImage(rightWalkCycle[rightCycleFrame]);
@@ -69,9 +73,9 @@ public class MainCharacter extends Actor
             if(j > 0) j--;    
         }
         
-        if(Greenfoot.isKeyDown("a"))
+        else if(Greenfoot.isKeyDown("a"))
         {
-            if(j == 0)j = 6;
+            if(j == 0)j = 3;
             if(j == 1)
             {
                 setImage(leftWalkCycle[leftCycleFrame]);
