@@ -9,17 +9,17 @@ public class Boundaries
 {
     public static void checkBoundaries()
     {
-        if(MyWorld.player.getX() > 575){
-            MyWorld.player.setLocation(575, MyWorld.player.getY());
+        if(MainCharacter.player.getX() > 575){
+            MainCharacter.player.setLocation(575, MainCharacter.player.getY());
         }
-        else if(MyWorld.player.getX() < 25){
-            MyWorld.player.setLocation(25, MyWorld.player.getY());
+        else if(MainCharacter.player.getX() < 25){
+            MainCharacter.player.setLocation(25, MainCharacter.player.getY());
         }
-        else if(MyWorld.player.getY() > 370){
-            MyWorld.player.setLocation(MyWorld.player.getX(), 370);
+        else if(MainCharacter.player.getY() > 370){
+            MainCharacter.player.setLocation(MainCharacter.player.getX(), 370);
         }
-        else if(MyWorld.player.getY() < 30){
-            MyWorld.player.setLocation(MyWorld.player.getX(), 30);
+        else if(MainCharacter.player.getY() < 30){
+            MainCharacter.player.setLocation(MainCharacter.player.getX(), 30);
         }
     }
 }

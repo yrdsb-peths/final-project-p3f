@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MainCharacter extends Actor
 {
+    public static MainCharacter player = new MainCharacter();
     private GreenfootImage[] upWalkCycle = new GreenfootImage[4];
     private GreenfootImage[] downWalkCycle = new GreenfootImage[4];
     private GreenfootImage[] rightWalkCycle = new GreenfootImage[4];

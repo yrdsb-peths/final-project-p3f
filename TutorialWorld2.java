@@ -8,7 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class TutorialWorld2 extends World
 {
-
     /**
      * Constructor for objects of class TutorialWorld2.
      * 
@@ -17,6 +16,6 @@ public class TutorialWorld2 extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
-        addObject(MyWorld.player, 300, 390);
+        addObject(MainCharacter.player, 300, 390);
     }
 }
