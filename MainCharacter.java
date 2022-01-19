@@ -24,6 +24,7 @@ public class MainCharacter extends Actor
         setImage(downWalkCycle[0]);
     }
     
+    
     /**
      * Act - do whatever the MainCharacter wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -31,7 +32,7 @@ public class MainCharacter extends Actor
     public void act()
     {
         checkKeys();
-        keepInWorld();
+        Boundaries.checkBoundaries();
     }
     
     private void checkKeys(){
@@ -85,21 +86,6 @@ public class MainCharacter extends Actor
                 setLocation(getX() - deltaD, getY());
             }
             if(j > 0) j--;
-        }
-    }
-    
-    private void keepInWorld(){
-        if(getX() > 575){
-            setLocation(575, getY());
-        }
-        else if(getX() < 25){
-            setLocation(25, getY());
-        }
-        else if(getY() > 370){
-            setLocation(getX(), 370);
-        }
-        else if(getY() < 30){
-            setLocation(getX(), 30);
         }
     }
 }
