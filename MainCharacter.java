@@ -24,8 +24,7 @@ public class MainCharacter extends Actor
         for(int i = 0; i < leftWalkCycle.length; i++) leftWalkCycle[i] = new GreenfootImage("PlayerLeft-" + i + ".png");
         setImage(downWalkCycle[0]);
     }
-    
-    
+        
     /**
      * Act - do whatever the MainCharacter wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -49,7 +48,7 @@ public class MainCharacter extends Actor
             }
             if(j > 0) j--;
         }
-        
+            
         else if(Greenfoot.isKeyDown("s"))
         {
             if(j == 0)j = 3;
@@ -62,7 +61,7 @@ public class MainCharacter extends Actor
             }
             if(j > 0) j--;
         }
-        
+            
         else if(Greenfoot.isKeyDown("d"))
         {
             if(j == 0)j = 3;
@@ -75,7 +74,7 @@ public class MainCharacter extends Actor
             }
             if(j > 0) j--;    
         }
-        
+            
         else if(Greenfoot.isKeyDown("a"))
         {
             if(j == 0)j = 3;
