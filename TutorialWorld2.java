@@ -18,4 +18,14 @@ public class TutorialWorld2 extends World
         super(600, 400, 1); 
         addObject(MainCharacter.player, 300, 390);
     }
+    
+    public void act(){
+        checkCrossWorld2();
+    }
+    
+    public void checkCrossWorld2(){
+        if(MainCharacter.player.getY() > 370 && (MainCharacter.player.getX() > 225 && MainCharacter.player.getX() < 375 && Greenfoot.isKeyDown("s"))){
+            Greenfoot.setWorld(new TutorialWorld1());
+        }
+    }
 }
