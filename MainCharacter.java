@@ -18,10 +18,10 @@ public class MainCharacter extends Actor
     
     public void addedToWorld(World MyWorld)
     {
-        for(int i = 0; i < upWalkCycle.length; i++) upWalkCycle[i] = new GreenfootImage("PlayerUp-" + i + ".png");
-        for(int i = 0; i < downWalkCycle.length; i++) downWalkCycle[i] = new GreenfootImage("PlayerDown-" + i + ".png");
-        for(int i = 0; i < rightWalkCycle.length; i++) rightWalkCycle[i] = new GreenfootImage("PlayerRight-" + i + ".png");
-        for(int i = 0; i < leftWalkCycle.length; i++) leftWalkCycle[i] = new GreenfootImage("PlayerLeft-" + i + ".png");
+        for(int i = 0; i < upWalkCycle.length; i++) upWalkCycle[i] = new GreenfootImage("MainCharacter/PlayerUp-" + i + ".png");
+        for(int i = 0; i < downWalkCycle.length; i++) downWalkCycle[i] = new GreenfootImage("MainCharacter/PlayerDown-" + i + ".png");
+        for(int i = 0; i < rightWalkCycle.length; i++) rightWalkCycle[i] = new GreenfootImage("MainCharacter/PlayerRight-" + i + ".png");
+        for(int i = 0; i < leftWalkCycle.length; i++) leftWalkCycle[i] = new GreenfootImage("MainCharacter/PlayerLeft-" + i + ".png");
         setImage(downWalkCycle[0]);
     }
         
