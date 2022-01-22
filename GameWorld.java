@@ -13,6 +13,10 @@ public class GameWorld extends World
     
     GreenfootImage tutorialWorld1 = new GreenfootImage("Worlds/TutorialWorld1.png");
     GreenfootImage tutorialWorld2 = new GreenfootImage("Worlds/TutorialWorld2.png");
+    
+    // Create labels for instructions
+    Label movement = new Label("Use W, A, S, D \n to move", 30);
+    Label interact = new Label("Use E \nto interact", 35);
     /**
      * Constructor for objects of class TutorialWorld.
      * 
@@ -27,6 +31,14 @@ public class GameWorld extends World
     
     public void act(){
         checkCrossWorlds();
+        if(isTutorialWorld1 == true){
+            removeObject(interact);
+            addObject(movement, 115, 110);
+        }
+        if(isTutorialWorld2 == true){
+            removeObject(movement);
+            addObject(interact, 95, 300);
+        }
     }
     
     public void checkCrossWorlds(){
