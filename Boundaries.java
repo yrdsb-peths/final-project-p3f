@@ -28,19 +28,45 @@ public class Boundaries
         
         // Tutorial world 1 boundaries
         if(MainCharacter.player.getWorld() instanceof TutorialWorld1){
-            if(MainCharacter.player.getY() <= 185 && MainCharacter.player.getX() < 230){
+            if(MainCharacter.player.getX() < 230 && MainCharacter.player.getY() < 185){
                 MainCharacter.player.setLocation(MainCharacter.player.getX(), 185);                
             }
             else if(MainCharacter.player.getX() < 240 && MainCharacter.player.getY() < 180){
                 MainCharacter.player.setLocation(240, MainCharacter.player.getY());
             }
-            else if(MainCharacter.player.getY() <= 185 && MainCharacter.player.getX() > 370){
+            else if(MainCharacter.player.getX() > 370 && MainCharacter.player.getY() < 185){
                 MainCharacter.player.setLocation(MainCharacter.player.getX(), 185); 
             }
             else if(MainCharacter.player.getX() > 360 && MainCharacter.player.getY() < 180){
                 MainCharacter.player.setLocation(360, MainCharacter.player.getY());
             }
-            
+            else if(MainCharacter.player.getY() > 285){
+                MainCharacter.player.setLocation(MainCharacter.player.getX(), 285);
+            }
+        }
+        
+        // Tutorial world 2 boundaries
+        if(MainCharacter.player.getWorld() instanceof TutorialWorld2){
+            // Left stones
+            if(MainCharacter.player.getX() < 250 && MainCharacter.player.getY() < 200){
+                MainCharacter.player.setLocation(MainCharacter.player.getX(), 200);                
+            }
+            // Right stones
+            else if(MainCharacter.player.getX() > 350 && MainCharacter.player.getY() < 200){
+                MainCharacter.player.setLocation(MainCharacter.player.getX(), 200);
+            }
+            // Left side of stairs
+            else if(MainCharacter.player.getX() < 260 && MainCharacter.player.getY() < 180){
+                MainCharacter.player.setLocation(260, MainCharacter.player.getY());
+            }
+            // Right side of stairs
+            else if(MainCharacter.player.getX() > 325 && MainCharacter.player.getY() < 180){
+                MainCharacter.player.setLocation(325, MainCharacter.player.getY());
+            }
+            // Top of stairs
+            else if(MainCharacter.player.getY() < 155){
+                MainCharacter.player.setLocation(MainCharacter.player.getX(), 155);                
+            }
         }
     }
 }
