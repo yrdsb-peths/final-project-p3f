@@ -19,7 +19,7 @@ public class TutorialWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400 , 1); 
-        addObject(MainCharacter.player, 300, 280);
+        addObject(MainCharacter.player, 300, 200);
         setBackground("Worlds/TutorialWorld1.png");
     }
     
@@ -36,6 +36,7 @@ public class TutorialWorld extends World
         }
         else if(MainCharacter.player.getY() > 370 && (MainCharacter.player.getX() > 225 && MainCharacter.player.getX() < 375 && Greenfoot.isKeyDown("s"))){
             setBackground("Worlds/TutorialWorld1.png");
+            MainCharacter.player.setLocation(300, 25);
             isTutorialWorld1 = true;
             isTutorialWorld2 = false;
         }
