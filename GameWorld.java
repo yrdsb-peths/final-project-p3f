@@ -6,21 +6,23 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class TutorialWorld extends World
+public class GameWorld extends World
 {
     public static boolean isTutorialWorld1 = true;
     public static boolean isTutorialWorld2 = false;
     
+    GreenfootImage tutorialWorld1 = new GreenfootImage("Worlds/TutorialWorld1.png");
+    GreenfootImage tutorialWorld2 = new GreenfootImage("Worlds/TutorialWorld2.png");
     /**
      * Constructor for objects of class TutorialWorld.
      * 
      */
-    public TutorialWorld()
+    public GameWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400 , 1); 
+        super(600, 400, 1); 
         addObject(MainCharacter.player, 300, 200);
-        setBackground("Worlds/TutorialWorld1.png");
+        setBackground(tutorialWorld1);
     }
     
     public void act(){
@@ -29,13 +31,13 @@ public class TutorialWorld extends World
     
     public void checkCrossWorlds(){
         if(MainCharacter.player.getY() < 30 && (MainCharacter.player.getX() > 225 && MainCharacter.player.getX() < 375 && Greenfoot.isKeyDown("w"))){
-            setBackground("Worlds/TutorialWorld2.png");
+            setBackground(tutorialWorld2);
             MainCharacter.player.setLocation(300, 390);
             isTutorialWorld1 = false;
             isTutorialWorld2 = true;
         }
         else if(MainCharacter.player.getY() > 370 && (MainCharacter.player.getX() > 225 && MainCharacter.player.getX() < 375 && Greenfoot.isKeyDown("s"))){
-            setBackground("Worlds/TutorialWorld1.png");
+            setBackground(tutorialWorld1);
             MainCharacter.player.setLocation(300, 25);
             isTutorialWorld1 = true;
             isTutorialWorld2 = false;
