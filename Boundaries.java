@@ -27,7 +27,7 @@ public class Boundaries
         }
         
         // Tutorial world 1 boundaries
-        if(GameWorld.isTutorialWorld1 == true){
+        if(GameWorld.isTutorialWorld1){
             if(MainCharacter.player.getX() < 230 && MainCharacter.player.getY() < 185){
                 MainCharacter.player.setLocation(MainCharacter.player.getX(), 185);                
             }
@@ -46,7 +46,7 @@ public class Boundaries
         }
         
         // Tutorial world 2 boundaries
-        else if(GameWorld.isTutorialWorld2 == true){
+        else if(GameWorld.isTutorialWorld2){
             // Left stones
             if(MainCharacter.player.getX() < 250 && MainCharacter.player.getY() < 200){
                 MainCharacter.player.setLocation(MainCharacter.player.getX(), 200);                
@@ -66,6 +66,43 @@ public class Boundaries
             // Top of stairs
             else if(MainCharacter.player.getY() < 155){
                 MainCharacter.player.setLocation(MainCharacter.player.getX(), 155);                
+            }
+        }
+        else if(GameWorld.isRoomWorld){
+            // Right wall
+            if(MainCharacter.player.getX() > 365){
+                MainCharacter.player.setLocation(365, MainCharacter.player.getY());
+            }
+            // Left wall
+            else if(MainCharacter.player.getX() < 240){
+                MainCharacter.player.setLocation(240, MainCharacter.player.getY());
+            }
+            // Bottom left wall
+            else if(MainCharacter.player.getX() < 330 && MainCharacter.player.getY() > 235){
+                MainCharacter.player.setLocation(MainCharacter.player.getX(), 235);
+            }
+            // Bottom right wall
+            else if(MainCharacter.player.getX() > 345 && MainCharacter.player.getY() > 230){
+                MainCharacter.player.setLocation(MainCharacter.player.getX(), 235);
+            }
+            // Left of bed
+            else if(MainCharacter.player.getX() > 255 && MainCharacter.player.getX() < 270 && MainCharacter.player.getY() < 220){
+                MainCharacter.player.setLocation(255, MainCharacter.player.getY());
+            }
+            // Bottom of bed
+            else if(MainCharacter.player.getX() < 305 && MainCharacter.player.getX() > 255 && MainCharacter.player.getY() < 220){
+                MainCharacter.player.setLocation(MainCharacter.player.getX(), 220);
+            }
+            // Right of bed
+            else if(MainCharacter.player.getX() < 320 && MainCharacter.player.getX() > 295 && MainCharacter.player.getY() < 220){
+                MainCharacter.player.setLocation(320, MainCharacter.player.getY());
+            }
+            // Shelf boundary
+            else if(MainCharacter.player.getX() < 265 && MainCharacter.player.getY() < 200){
+                MainCharacter.player.setLocation(MainCharacter.player.getX(), 200);
+            }
+            else if(MainCharacter.player.getX() > 310 && MainCharacter.player.getY() < 200){
+                MainCharacter.player.setLocation(MainCharacter.player.getX(), 200);
             }
         }
     }

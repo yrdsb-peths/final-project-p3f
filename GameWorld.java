@@ -13,6 +13,7 @@ public class GameWorld extends World
     public static boolean isFoyerWorld;
     public static boolean isRoomWorld;
     
+    public boolean spawned;
     // A simple timer
     public static SimpleTimer timer = new SimpleTimer();
     
@@ -27,7 +28,7 @@ public class GameWorld extends World
     Label interact = new Label("Use E to \ninteract with\n objects", 35);
     Label foyerDialogue1 = new Label("What the hell is that!?!?!", 30);
     
-    Paper note = new Paper();
+    Paper tutorialNote = new Paper();
     
     Demon demon = new Demon();
     /**
@@ -48,20 +49,21 @@ public class GameWorld extends World
     
     public void act(){
         changeWorlds();
-        checkCrossWorlds();
+        if(isTutorialWorld1 || isTutorialWorld2){
+            checkCrossWorlds();
+        }
     }
     
     public void changeWorlds(){
         if(isTutorialWorld1){
-            MainCharacter.cutscene = false;
-            removeObject(interact);
-            removeObject(note);
             addObject(movement, 115, 110);
+            removeObject(tutorialNote);
+            removeObject(interact);
         }
         else if(isTutorialWorld2){
-            removeObject(movement);
-            addObject(note, 300, 300);
+            addObject(tutorialNote, 300, 300);
             addObject(interact, 90, 300);
+            removeObject(movement);
             if(MainCharacter.player.getY() < 165 && Greenfoot.isKeyDown("e")){
                 isTutorialWorld2 = false;
                 isFoyerWorld = true;
@@ -70,32 +72,37 @@ public class GameWorld extends World
             }             
         }
         if(isFoyerWorld){
-            isFoyerWorld = false;
             setBackground(foyerWorld);
             removeObject(interact);
-            removeObject(note);
+            removeObject(tutorialNote);
             addObject(demon, 300, 130);
             addObject(foyerDialogue1, 300, 370);
+            isFoyerWorld = false;
             timer.mark();
         }
         if(isRoomWorld){
-            removeObject(foyerDialogue1);
+            if(!spawned){
+                removeObject(MainCharacter.player);
+                addObject(MainCharacter.player, 250, 210);
+            }
+            spawned = true;
             setBackground(roomWorld);
+            removeObject(foyerDialogue1);
         }
     }
     
     public void checkCrossWorlds(){
         if(MainCharacter.player.getY() < 30 && (MainCharacter.player.getX() > 225 && MainCharacter.player.getX() < 375 && Greenfoot.isKeyDown("w"))){
-            isTutorialWorld1 = false;
             setBackground(tutorialWorld2);
             MainCharacter.player.setLocation(300, 390);
+            isTutorialWorld1 = false;
             isTutorialWorld2 = true;
         }
         else if(MainCharacter.player.getY() > 370 && (MainCharacter.player.getX() > 225 && MainCharacter.player.getX() < 375 && Greenfoot.isKeyDown("s"))){
-            isTutorialWorld2 = false;
             setBackground(tutorialWorld1);
             MainCharacter.player.setLocation(300, 25);
             isTutorialWorld1 = true;
+            isTutorialWorld2 = false;
         }
     }
 }

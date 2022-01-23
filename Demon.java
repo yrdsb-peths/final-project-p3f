@@ -8,9 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Demon extends Actor
 {
-    // A simple timer
-    private SimpleTimer timer = new SimpleTimer();
-    
     /**
      * Act - do whatever the Demon wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -33,6 +30,7 @@ public class Demon extends Actor
             setLocation(getX(), getY() + deltaX(1));
         }
     }
+    
     public int deltaX(int n){
         if(n >= 4){
             return 0;
