@@ -45,6 +45,7 @@ public class GameWorld extends World
     
     public void changeWorlds(){
         if(isTutorialWorld1 == true){
+            MainCharacter.cutscene = false;
             removeObject(interact);
             removeObject(note);
             addObject(movement, 115, 110);
