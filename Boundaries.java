@@ -46,7 +46,7 @@ public class Boundaries
         }
         
         // Tutorial world 2 boundaries
-        if(GameWorld.isTutorialWorld2 == true){
+        else if(GameWorld.isTutorialWorld2 == true){
             // Left stones
             if(MainCharacter.player.getX() < 250 && MainCharacter.player.getY() < 200){
                 MainCharacter.player.setLocation(MainCharacter.player.getX(), 200);                

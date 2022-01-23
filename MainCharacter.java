@@ -16,6 +16,7 @@ public class MainCharacter extends Actor
     
     private int j = 3, deltaD = 10, upCycleFrame = 0, downCycleFrame = 0, leftCycleFrame = 0, rightCycleFrame = 0; 
     
+    public static boolean cutscene;
     public void addedToWorld(World MyWorld)
     {
         for(int i = 0; i < upWalkCycle.length; i++) upWalkCycle[i] = new GreenfootImage("MainCharacter/PlayerUp-" + i + ".png");
@@ -36,56 +37,58 @@ public class MainCharacter extends Actor
     }
     
     private void checkKeys(){
-        if(Greenfoot.isKeyDown("w"))
-        {
-            if(j == 0)j = 3;
-            if(j == 1)
+        if(cutscene == false){
+            if(Greenfoot.isKeyDown("w"))
             {
-                setImage(upWalkCycle[upCycleFrame]);
-                upCycleFrame++;
-                if(upCycleFrame >= upWalkCycle.length) upCycleFrame = 0;
-                setLocation(getX(), getY() - deltaD);
+                if(j == 0)j = 3;
+                if(j == 1)
+                {
+                    setImage(upWalkCycle[upCycleFrame]);
+                    upCycleFrame++;
+                    if(upCycleFrame >= upWalkCycle.length) upCycleFrame = 0;
+                    setLocation(getX(), getY() - deltaD);
+                }
+                if(j > 0) j--;
             }
-            if(j > 0) j--;
-        }
-            
-        else if(Greenfoot.isKeyDown("s"))
-        {
-            if(j == 0)j = 3;
-            if(j == 1)
+                
+            else if(Greenfoot.isKeyDown("s"))
             {
-                setImage(downWalkCycle[downCycleFrame]);
-                downCycleFrame++;
-                if(downCycleFrame >= downWalkCycle.length) downCycleFrame = 0;
-                setLocation(getX(), getY() + deltaD);
+                if(j == 0)j = 3;
+                if(j == 1)
+                {
+                    setImage(downWalkCycle[downCycleFrame]);
+                    downCycleFrame++;
+                    if(downCycleFrame >= downWalkCycle.length) downCycleFrame = 0;
+                    setLocation(getX(), getY() + deltaD);
+                }
+                if(j > 0) j--;
             }
-            if(j > 0) j--;
-        }
-            
-        else if(Greenfoot.isKeyDown("d"))
-        {
-            if(j == 0)j = 3;
-            if(j == 1)
+                
+            else if(Greenfoot.isKeyDown("d"))
             {
-                setImage(rightWalkCycle[rightCycleFrame]);
-                rightCycleFrame++;
-                if(rightCycleFrame >= rightWalkCycle.length) rightCycleFrame = 0;
-                setLocation(getX() + deltaD, getY());
+                if(j == 0)j = 3;
+                if(j == 1)
+                {
+                    setImage(rightWalkCycle[rightCycleFrame]);
+                    rightCycleFrame++;
+                    if(rightCycleFrame >= rightWalkCycle.length) rightCycleFrame = 0;
+                    setLocation(getX() + deltaD, getY());
+                }
+                if(j > 0) j--;    
             }
-            if(j > 0) j--;    
-        }
-            
-        else if(Greenfoot.isKeyDown("a"))
-        {
-            if(j == 0)j = 3;
-            if(j == 1)
+                
+            else if(Greenfoot.isKeyDown("a"))
             {
-                setImage(leftWalkCycle[leftCycleFrame]);
-                leftCycleFrame++;
-                if(leftCycleFrame >= leftWalkCycle.length) leftCycleFrame = 0;
-                setLocation(getX() - deltaD, getY());
+                if(j == 0)j = 3;
+                if(j == 1)
+                {
+                    setImage(leftWalkCycle[leftCycleFrame]);
+                    leftCycleFrame++;
+                    if(leftCycleFrame >= leftWalkCycle.length) leftCycleFrame = 0;
+                    setLocation(getX() - deltaD, getY());
+                }
+                if(j > 0) j--;
             }
-            if(j > 0) j--;
         }
     }
 }
