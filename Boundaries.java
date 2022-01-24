@@ -28,18 +28,23 @@ public class Boundaries
         
         // Tutorial world 1 boundaries
         if(GameWorld.isTutorialWorld1){
-            if(MainCharacter.player.getX() < 230 && MainCharacter.player.getY() < 185){
-                MainCharacter.player.setLocation(MainCharacter.player.getX(), 185);                
+            // Bottom of left stone wall
+            if(MainCharacter.player.getX() < 230 && MainCharacter.player.getY() < 175){
+                MainCharacter.player.setLocation(MainCharacter.player.getX(), 175);                
             }
-            else if(MainCharacter.player.getX() < 240 && MainCharacter.player.getY() < 180){
+            // Right of left stone wall
+            else if(MainCharacter.player.getX() < 240 && MainCharacter.player.getY() < 170){
                 MainCharacter.player.setLocation(240, MainCharacter.player.getY());
             }
-            else if(MainCharacter.player.getX() > 370 && MainCharacter.player.getY() < 185){
-                MainCharacter.player.setLocation(MainCharacter.player.getX(), 185); 
+            // Bottom of right stone wall
+            else if(MainCharacter.player.getX() > 370 && MainCharacter.player.getY() < 175){
+                MainCharacter.player.setLocation(MainCharacter.player.getX(), 175); 
             }
-            else if(MainCharacter.player.getX() > 360 && MainCharacter.player.getY() < 180){
+            // Left of right stone wall
+            else if(MainCharacter.player.getX() > 360 && MainCharacter.player.getY() < 170){
                 MainCharacter.player.setLocation(360, MainCharacter.player.getY());
             }
+            // Trees
             else if(MainCharacter.player.getY() > 285){
                 MainCharacter.player.setLocation(MainCharacter.player.getX(), 285);
             }
