@@ -45,13 +45,13 @@ public class GameWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
+        setBackground(tutorialWorld1);
+        addObject(player, 300, 200);
         isTutorial1 = true;
         isTutorial2 = false;
         isFoyer = false;
         isRoom = false;
         isHallway = false;
-        setBackground(tutorialWorld1);
-        addObject(player, 300, 200);
     }
     
     public void act(){
@@ -112,13 +112,13 @@ public class GameWorld extends World
     }
 
     public void checkCrossWorlds(){
-        if(player.getY() < 30 && (player.getX() > 225 && player.getX() < 375 && Greenfoot.isKeyDown("w"))){
+        if(player.getY() < 30 && player.getX() > 225 && player.getX() < 375 && Greenfoot.isKeyDown("w")){
             setBackground(tutorialWorld2);
             player.setLocation(300, 390);
             isTutorial1 = false;
             isTutorial2 = true;
         }
-        else if(player.getY() > 370 && (player.getX() > 225 && player.getX() < 375 && Greenfoot.isKeyDown("s"))){
+        else if(player.getY() > 370 && player.getX() > 225 && player.getX() < 375 && Greenfoot.isKeyDown("s")){
             setBackground(tutorialWorld1);
             player.setLocation(300, 25);
             isTutorial1 = true;
