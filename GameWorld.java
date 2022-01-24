@@ -25,6 +25,9 @@ public class GameWorld extends World
     GreenfootImage roomWorld = new GreenfootImage("Worlds/Room.png");
     GreenfootImage hallwayWorld = new GreenfootImage("Worlds/Hallway.png");
     
+    // Create character
+    public static MainCharacter player = new MainCharacter();
+    
     // Create labels
     Label movement = new Label("Use W, A, S, D \n to move", 30);
     Label interact = new Label("Use E to \ninteract with\n objects", 35);
@@ -47,7 +50,7 @@ public class GameWorld extends World
         isRoomWorld = false;
         isHallwayWorld = false;
         setBackground(tutorialWorld1);
-        addObject(MainCharacter.player, 300, 200);
+        addObject(player, 300, 200);
     }
     
     public void act(){
@@ -67,11 +70,11 @@ public class GameWorld extends World
             addObject(tutorialNote, 300, 300);
             addObject(interact, 90, 300);
             removeObject(movement);
-            if(MainCharacter.player.getY() < 165 && Greenfoot.isKeyDown("e")){
+            if(player.getY() < 165 && Greenfoot.isKeyDown("e")){
                 isTutorialWorld2 = false;
                 isFoyerWorld = true;
                 MainCharacter.cutscene = true;
-                MainCharacter.player.setLocation(300, 320);
+                player.setLocation(300, 320);
             }             
         }
         if(isFoyerWorld){
@@ -85,13 +88,13 @@ public class GameWorld extends World
         }
         if(isRoomWorld){
             if(!spawned){
-                removeObject(MainCharacter.player);
-                addObject(MainCharacter.player, 250, 210);
+                removeObject(player);
+                addObject(player, 250, 210);
                 spawned = true;
             }
             setBackground(roomWorld);
             removeObject(foyerDialogue1);
-            if(MainCharacter.player.getY() > 240){
+            if(player.getY() > 240){
                 spawned = false;
                 isHallwayWorld = true;
                 isRoomWorld = false;
@@ -100,23 +103,23 @@ public class GameWorld extends World
         if(isHallwayWorld){
             setBackground(hallwayWorld);
             if(!spawned){
-                removeObject(MainCharacter.player);
-                addObject(MainCharacter.player, 50, 200);
+                removeObject(player);
+                addObject(player, 50, 200);
                 spawned = true;
             }
         }
     }
     
     public void checkCrossWorlds(){
-        if(MainCharacter.player.getY() < 30 && (MainCharacter.player.getX() > 225 && MainCharacter.player.getX() < 375 && Greenfoot.isKeyDown("w"))){
+        if(player.getY() < 30 && (player.getX() > 225 && player.getX() < 375 && Greenfoot.isKeyDown("w"))){
             setBackground(tutorialWorld2);
-            MainCharacter.player.setLocation(300, 390);
+            player.setLocation(300, 390);
             isTutorialWorld1 = false;
             isTutorialWorld2 = true;
         }
-        else if(MainCharacter.player.getY() > 370 && (MainCharacter.player.getX() > 225 && MainCharacter.player.getX() < 375 && Greenfoot.isKeyDown("s"))){
+        else if(player.getY() > 370 && (player.getX() > 225 && player.getX() < 375 && Greenfoot.isKeyDown("s"))){
             setBackground(tutorialWorld1);
-            MainCharacter.player.setLocation(300, 25);
+            player.setLocation(300, 25);
             isTutorialWorld1 = true;
             isTutorialWorld2 = false;
         }

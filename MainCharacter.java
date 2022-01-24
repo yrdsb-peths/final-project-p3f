@@ -8,7 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MainCharacter extends Actor
 {
-    public static MainCharacter player = new MainCharacter();
     private GreenfootImage[] upWalkCycle = new GreenfootImage[4];
     private GreenfootImage[] downWalkCycle = new GreenfootImage[4];
     private GreenfootImage[] rightWalkCycle = new GreenfootImage[4];
@@ -17,6 +16,7 @@ public class MainCharacter extends Actor
     private int j = 3, deltaD = 10, upCycleFrame = 0, downCycleFrame = 0, leftCycleFrame = 0, rightCycleFrame = 0; 
     
     public static boolean cutscene;
+    
     public void addedToWorld(World MyWorld)
     {
         for(int i = 0; i < upWalkCycle.length; i++) upWalkCycle[i] = new GreenfootImage("MainCharacter/PlayerUp-" + i + ".png");

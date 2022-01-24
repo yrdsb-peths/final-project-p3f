@@ -15,7 +15,7 @@ public class Demon extends Actor
     public void act()
     {
         setImage("Objects/Demon.png");
-        if(GameWorld.timer.millisElapsed() > 2000){
+        if(GameWorld.timer.millisElapsed() > 3000){
             checkY();
         }
     }
