@@ -12,6 +12,7 @@ public class GameWorld extends World
     public static boolean isTutorialWorld2;
     public static boolean isFoyerWorld;
     public static boolean isRoomWorld;
+    public static boolean isHallwayWorld;
     
     public boolean spawned;
     // A simple timer
@@ -22,6 +23,7 @@ public class GameWorld extends World
     GreenfootImage tutorialWorld2 = new GreenfootImage("Worlds/TutorialWorld2.png");
     GreenfootImage foyerWorld = new GreenfootImage("Worlds/Foyer.png");
     GreenfootImage roomWorld = new GreenfootImage("Worlds/Room.png");
+    GreenfootImage hallwayWorld = new GreenfootImage("Worlds/Hallway.png");
     
     // Create labels
     Label movement = new Label("Use W, A, S, D \n to move", 30);
@@ -43,6 +45,7 @@ public class GameWorld extends World
         isTutorialWorld2 = false;
         isFoyerWorld = false;
         isRoomWorld = false;
+        isHallwayWorld = false;
         setBackground(tutorialWorld1);
         addObject(MainCharacter.player, 300, 200);
     }
@@ -84,10 +87,23 @@ public class GameWorld extends World
             if(!spawned){
                 removeObject(MainCharacter.player);
                 addObject(MainCharacter.player, 250, 210);
+                spawned = true;
             }
-            spawned = true;
             setBackground(roomWorld);
             removeObject(foyerDialogue1);
+            if(MainCharacter.player.getY() > 240){
+                spawned = false;
+                isHallwayWorld = true;
+                isRoomWorld = false;
+            }
+        }
+        if(isHallwayWorld){
+            setBackground(hallwayWorld);
+            if(!spawned){
+                removeObject(MainCharacter.player);
+                addObject(MainCharacter.player, 50, 200);
+                spawned = true;
+            }
         }
     }
     

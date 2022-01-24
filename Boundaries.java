@@ -10,12 +10,12 @@ public class Boundaries
     public static void checkBoundaries()
     {
         // Right side of world
-        if(MainCharacter.player.getX() > 580){
-            MainCharacter.player.setLocation(580, MainCharacter.player.getY());
+        if(MainCharacter.player.getX() > 585){
+            MainCharacter.player.setLocation(585, MainCharacter.player.getY());
         }
         // Left side of world
-        else if(MainCharacter.player.getX() < 20){
-            MainCharacter.player.setLocation(20, MainCharacter.player.getY());
+        else if(MainCharacter.player.getX() < 15){
+            MainCharacter.player.setLocation(15, MainCharacter.player.getY());
         }
         // Bottom side of world
         else if(MainCharacter.player.getY() > 375){
@@ -70,8 +70,8 @@ public class Boundaries
         }
         else if(GameWorld.isRoomWorld){
             // Right wall
-            if(MainCharacter.player.getX() > 365){
-                MainCharacter.player.setLocation(365, MainCharacter.player.getY());
+            if(MainCharacter.player.getX() > 370){
+                MainCharacter.player.setLocation(370, MainCharacter.player.getY());
             }
             // Left wall
             else if(MainCharacter.player.getX() < 240){
@@ -82,7 +82,7 @@ public class Boundaries
                 MainCharacter.player.setLocation(MainCharacter.player.getX(), 235);
             }
             // Bottom right wall
-            else if(MainCharacter.player.getX() > 345 && MainCharacter.player.getY() > 230){
+            else if(MainCharacter.player.getX() > 345 && MainCharacter.player.getY() > 235){
                 MainCharacter.player.setLocation(MainCharacter.player.getX(), 235);
             }
             // Left of bed
@@ -101,8 +101,19 @@ public class Boundaries
             else if(MainCharacter.player.getX() < 265 && MainCharacter.player.getY() < 200){
                 MainCharacter.player.setLocation(MainCharacter.player.getX(), 200);
             }
+            // Desk boundary
             else if(MainCharacter.player.getX() > 310 && MainCharacter.player.getY() < 200){
                 MainCharacter.player.setLocation(MainCharacter.player.getX(), 200);
+            }
+        }
+        else if(GameWorld.isHallwayWorld){
+            // Bottom of hallway
+            if(MainCharacter.player.getY() > 235){
+                MainCharacter.player.setLocation(MainCharacter.player.getX(), 235);
+            }
+            // Top of hallway
+            else if(MainCharacter.player.getY() < 185){
+                MainCharacter.player.setLocation(MainCharacter.player.getX(), 185);
             }
         }
     }
