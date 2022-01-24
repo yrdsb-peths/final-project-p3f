@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Paper extends Actor
 {
     LargePaper tutorialPaper = new LargePaper();
-    Label tutorialPaperText = new Label("Look for papers\n like this to help\n progress in the\n game.\n \np.s. walk through\n the doors to end\n the tutorial", 30);
+    Label tutorialPaperText = new Label("Look for papers\n like this to help\n progress in the\n game.\n \n Walk through\n the doors to end\n the tutorial", 30);
     /**
      * Act - do whatever the Paper wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

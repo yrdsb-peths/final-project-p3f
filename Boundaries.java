@@ -27,7 +27,7 @@ public class Boundaries
         }
         
         // Tutorial world 1 boundaries
-        if(GameWorld.isTutorialWorld1){
+        if(GameWorld.isTutorial1){
             // Bottom of left stone wall
             if(GameWorld.player.getX() < 230 && GameWorld.player.getY() < 175){
                 GameWorld.player.setLocation(GameWorld.player.getX(), 175);                
@@ -51,7 +51,7 @@ public class Boundaries
         }
         
         // Tutorial world 2 boundaries
-        else if(GameWorld.isTutorialWorld2){
+        else if(GameWorld.isTutorial2){
             // Left stones
             if(GameWorld.player.getX() < 250 && GameWorld.player.getY() < 200){
                 GameWorld.player.setLocation(GameWorld.player.getX(), 200);                
@@ -73,7 +73,7 @@ public class Boundaries
                 GameWorld.player.setLocation(GameWorld.player.getX(), 155);                
             }
         }
-        else if(GameWorld.isRoomWorld){
+        else if(GameWorld.isRoom){
             // Right wall
             if(GameWorld.player.getX() > 370){
                 GameWorld.player.setLocation(370, GameWorld.player.getY());
@@ -111,7 +111,7 @@ public class Boundaries
                 GameWorld.player.setLocation(GameWorld.player.getX(), 200);
             }
         }
-        else if(GameWorld.isHallwayWorld){
+        else if(GameWorld.isHallway){
             // Bottom of hallway
             if(GameWorld.player.getY() > 235){
                 GameWorld.player.setLocation(GameWorld.player.getX(), 235);
