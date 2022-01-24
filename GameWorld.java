@@ -72,45 +72,44 @@ public class GameWorld extends World
             addObject(interact, 90, 300);
             removeObject(movement);
             if(player.getY() < 165 && Greenfoot.isKeyDown("e")){
+                MainCharacter.cutscene = true;
                 isTutorial2 = false;
                 isFoyer = true;
-                MainCharacter.cutscene = true;
-                player.setLocation(300, 320);
             }             
         }
         if(isFoyer){
             setBackground(foyerWorld);
             removeObject(interact);
             removeObject(tutorialNote);
+            player.setLocation(300, 320);
             addObject(demon, 300, 130);
             addObject(foyerDialogue1, 300, 370);
             isFoyer = false;
             timer.mark();
         }
         if(isRoom){
-            if(!spawned){
-                removeObject(player);
-                addObject(player, 250, 210);
-                spawned = true;
-            }
+            respawn(250, 210);
             setBackground(roomWorld);
             removeObject(foyerDialogue1);
             if(player.getY() > 240){
                 spawned = false;
-                isHallway = true;
                 isRoom = false;
+                isHallway = true;
             }
         }
         if(isHallway){
             setBackground(hallwayWorld);
-            if(!spawned){
-                removeObject(player);
-                addObject(player, 50, 200);
-                spawned = true;
-            }
+            respawn(50, 200);
         }
     }
     
+    public void respawn(int x, int y){
+        if(!spawned){
+            removeObject(player);
+            addObject(player, x, y);
+            spawned = true;
+        }
+    }
 
     public void checkCrossWorlds(){
         if(player.getY() < 30 && (player.getX() > 225 && player.getX() < 375 && Greenfoot.isKeyDown("w"))){
