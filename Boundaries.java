@@ -10,8 +10,8 @@ public class Boundaries
     public static void checkBoundaries()
     {
         // Right side of world
-        if(GameWorld.player.getX() > 585){
-            GameWorld.player.setLocation(585, GameWorld.player.getY());
+        if(GameWorld.player.getX() > 560){
+            GameWorld.player.setLocation(560, GameWorld.player.getY());
         }
         // Left side of world
         else if(GameWorld.player.getX() < 15){
@@ -73,7 +73,7 @@ public class Boundaries
                 GameWorld.player.setLocation(GameWorld.player.getX(), 155);                
             }
         }
-        else if(GameWorld.isRoom){
+        else if(GameWorld.roomBoundaries){
             // Right wall
             if(GameWorld.player.getX() > 370){
                 GameWorld.player.setLocation(370, GameWorld.player.getY());

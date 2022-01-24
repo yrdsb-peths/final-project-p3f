@@ -24,7 +24,7 @@ public class Demon extends Actor
         if(isTouching(MainCharacter.class)){
             getWorld().removeObject(this);
             MainCharacter.cutscene = false;
-            GameWorld.isRoom = true;
+            GameWorld.isRoom2 = true;
         }
         else{
             setLocation(getX(), getY() + deltaX(1));
