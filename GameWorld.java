@@ -94,7 +94,7 @@ public class GameWorld extends World
             removeObject(interact);
             removeObject(tutorialNote);
             player.setLocation(300, 320);
-            addObject(demon, 300, 130);
+            addObject(demon, 300, 185);
             addObject(foyerDialogue, 300, 370);
             isFoyer = false;
             timer.mark();
@@ -106,7 +106,7 @@ public class GameWorld extends World
             setBackground(roomWorld);
             roomBoundaries = true;
             addObject(wokeUpDialogue, 300, 310); 
-            if(player.getY() > 240){
+            if(player.getY() > 250){
                 spawned = false;
                 wakeUpInRoom = false;
                 roomBoundaries = false;
@@ -120,7 +120,7 @@ public class GameWorld extends World
             isHallway = false;
             setBackground(roomWorld);
             roomBoundaries = true;
-            if(player.getY() > 240){
+            if(player.getY() > 250){
                 spawned = false;
                 isRoom1 = false;
                 roomBoundaries = false;
@@ -133,7 +133,7 @@ public class GameWorld extends World
             isHallway = false;
             setBackground(roomWorld);
             roomBoundaries = true;
-            if(player.getY() > 240){
+            if(player.getY() > 250){
                 spawned = false;
                 isRoom2 = false;
                 roomBoundaries = false;
@@ -146,7 +146,7 @@ public class GameWorld extends World
             isHallway = false;
             setBackground(roomWorld);
             roomBoundaries = true;
-            if(player.getY() > 240){
+            if(player.getY() > 250){
                 spawned = false;
                 isRoom3 = false;
                 roomBoundaries = false;
@@ -159,7 +159,7 @@ public class GameWorld extends World
             isHallway = false;
             setBackground(roomWorld);
             roomBoundaries = true;
-            if(player.getY() > 240){
+            if(player.getY() > 250){
                 spawned = false;
                 isRoom4 = false;
                 roomBoundaries = false;
@@ -172,7 +172,7 @@ public class GameWorld extends World
             isHallway = false;
             setBackground(roomWorld);
             roomBoundaries = true;
-            if(player.getY() > 240){
+            if(player.getY() > 250){
                 spawned = false;
                 isRoom5 = false;
                 roomBoundaries = false;
@@ -185,7 +185,7 @@ public class GameWorld extends World
             isHallway = false;
             setBackground(roomWorld);
             roomBoundaries = true;
-            if(player.getY() > 240){
+            if(player.getY() > 250){
                 spawned = false;
                 isRoom6 = false;
                 roomBoundaries = false;
@@ -199,43 +199,44 @@ public class GameWorld extends World
             hallwayRooms();
         }
         
+        
     }
    
     public void hallwayRooms(){
         if(player.getX() > 30 & player.getX() < 60 && player.getY() == 185 && Greenfoot.isKeyDown("e")){
             if(!lockedRoom1){
+                player.setLocation(340, 240);
                 isRoom1 = true;
-                player.setLocation(340, 230);
             }
         }
         if(player.getX() > 130 & player.getX() < 160 && player.getY() == 185 && Greenfoot.isKeyDown("e")){
             if(!lockedRoom2){
                 isRoom2 = true;
-                player.setLocation(340, 230);
+                player.setLocation(340, 240);
             }
         }
         if(player.getX() > 230 & player.getX() < 260 && player.getY() == 185 && Greenfoot.isKeyDown("e")){
             if(!lockedRoom3){
                 isRoom3 = true;
-                player.setLocation(340, 230);
+                player.setLocation(340, 240);
             }
         }
         if(player.getX() > 320 & player.getX() < 350 && player.getY() == 185 && Greenfoot.isKeyDown("e")){
             if(!lockedRoom4){
                 isRoom4 = true;
-                player.setLocation(340, 230);
+                player.setLocation(340, 240);
             }
         }
         if(player.getX() > 420 & player.getX() < 450 && player.getY() == 185 && Greenfoot.isKeyDown("e")){
             if(!lockedRoom5){
                 isRoom5 = true;
-                player.setLocation(340, 230);
+                player.setLocation(340, 240);
             }
         }
         if(player.getX() > 510 & player.getX() < 550 && player.getY() == 185 && Greenfoot.isKeyDown("e")){
             if(!lockedRoom6){
                 isRoom6 = true;
-                player.setLocation(340, 230);
+                player.setLocation(340, 240);
             }
         }
     }
