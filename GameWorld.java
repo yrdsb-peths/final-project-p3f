@@ -117,6 +117,19 @@ public class GameWorld extends World
         }
     }
     
+    public void leaveRooms(){
+        spawned = false;
+        roomBoundaries = false;
+        wakeUpInRoom = false;
+        isRoom1 = false;
+        isRoom2 = false;
+        isRoom3 = false;
+        isRoom4 = false;
+        isRoom5 = false;
+        isRoom6 = false;
+        isHallway = true;
+    }
+    
     public void changeWorlds(){
         if(isTutorial1){
             addObject(movement, 115, 110);
@@ -153,12 +166,9 @@ public class GameWorld extends World
             roomBoundaries = true;
             addObject(wokeUpDialogue, 300, 310); 
             if(player.getY() > 250){
-                wakeUpInRoom = false;
-                roomBoundaries = false;
+                leaveRooms();
                 removeObject(wokeUpDialogue);
-                spawned = false;
                 respawn(145, 185);
-                isHallway = true;
             }
         }
         
@@ -178,14 +188,11 @@ public class GameWorld extends World
                 }
             }
             if(player.getY() > 250){
-                spawned = false;
-                isRoom1 = false;
-                roomBoundaries = false;
-                respawn(45, 185);
                 removeObject(room1TrashText);
                 removeObject(emptyBasket);
                 removeObject(room1Letter);
-                isHallway = true;
+                leaveRooms();
+                respawn(45, 185);
             }
         }
         
@@ -213,13 +220,10 @@ public class GameWorld extends World
                 timer.mark();
             }
             if(player.getY() > 250){
-                spawned = false;
-                isRoom2 = false;
-                roomBoundaries = false;
                 removeObject(room2TrashText);
                 removeObject(room2DrawerText);
+                leaveRooms();
                 respawn(145, 185);
-                isHallway = true;
             }
         }
         
@@ -238,11 +242,8 @@ public class GameWorld extends World
             }
             if(player.getY() > 250){
                 removeObject(room3TrashText);
-                spawned = false;
-                isRoom3 = false;
-                roomBoundaries = false;
+                leaveRooms();
                 respawn(245, 185);
-                isHallway = true;
             }
         }
         
@@ -251,11 +252,8 @@ public class GameWorld extends World
             setBackground(roomWorld);
             roomBoundaries = true;
             if(player.getY() > 250){
-                spawned = false;
-                isRoom4 = false;
-                roomBoundaries = false;
+                leaveRooms();
                 respawn(335, 185);
-                isHallway = true;
             }
         }
         
@@ -266,11 +264,8 @@ public class GameWorld extends World
             removeObject(rightHallwayTrashText);
             removeObject(leftHallwayTrashText);
             if(player.getY() > 250){
-                spawned = false;
-                isRoom5 = false;
-                roomBoundaries = false;
+                leaveRooms();
                 respawn(435, 185);
-                isHallway = true;
             }
         }
         
@@ -279,11 +274,8 @@ public class GameWorld extends World
             setBackground(roomWorld);
             roomBoundaries = true;
             if(player.getY() > 250){
-                spawned = false;
-                isRoom6 = false;
-                roomBoundaries = false;
+                leaveRooms();
                 respawn(530, 185);
-                isHallway = true;
             }
         }
         
