@@ -1,19 +1,19 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class EmptyBasket here.
+ * Write a description of class Key1 here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class EmptyBasket extends Actor
+public class Key1 extends Actor
 {
     /**
-     * Act - do whatever the EmptyBasket wants to do. This method is called whenever
+     * Act - do whatever the Key1 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
     {
-        setImage("Objects/EmptyBasket.png");
+        setImage("Objects/Keys-1.png");
     }
 }
