@@ -14,7 +14,7 @@ public class Paper extends Actor
     
     // Large paper and text for room 1
     LargePaper room1LargePaper = new LargePaper();
-    Label room1Text = new Label("Mom took away\n Teddy. She ripped\n it apart and then \nthrew it away saying \nI was being childish. I want Teddy back,\n I'm scared.", 30);
+    Label room1Text = new Label("Mom took Teddy.\n She ripped him\n apart and then \nthrew him away\n saying I was\n being childish. I\n want Teddy back,\n I'm scared.", 30);
 
     /**
      * Act - do whatever the Paper wants to do. This method is called whenever
@@ -48,7 +48,7 @@ public class Paper extends Actor
                 game.addObject(room1LargePaper, 300, 200);
                 room1Text.setFillColor(Color.BLACK);
                 room1Text.setLineColor(Color.WHITE);
-                game.addObject(room1Text, 300, 190);
+                game.addObject(room1Text, 295, 200);
             }
             if(isTouching(MainCharacter.class) == false){
                 game.removeObject(room1LargePaper);

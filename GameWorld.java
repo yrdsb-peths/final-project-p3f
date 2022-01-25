@@ -19,6 +19,7 @@ public class GameWorld extends World
 
     boolean lockedRoom1 = false, lockedRoom2 = false, lockedRoom3 = false, lockedRoom4 = true, lockedRoom5 = false, lockedRoom6 = true;
     
+    boolean room1TrashSearched, room2TrashSearched, room3TrashSearched, leftHallwayTrashSearched, rightHallwayTrashSearched;
     // A simple timer
     public static SimpleTimer timer = new SimpleTimer();
     
@@ -37,7 +38,13 @@ public class GameWorld extends World
     Label interact = new Label("Use E to \ninteract with\n objects", 35);
     Label foyerDialogue = new Label("What the hell is that!?!?!", 30);
     Label wokeUpDialogue = new Label("Where am I?", 30);
-    
+    Label room1TrashText = new Label("You found the body and the head \n(piece one of five)", 30);
+    Label room2TrashText = new Label("You found a teddy bear arm \n(piece two of five)", 30);
+    Label room3TrashText = new Label("You found a teddy bear arm \n(piece three of five)", 30);
+    Label leftHallwayTrashText = new Label("You found a limb \n(piece four of five)", 30);
+    Label rightHallwayTrashText = new Label("You found a limb \n(piece five of five)", 30);
+    Label lockedDoor4 = new Label("Door number 4 is locked", 30);
+    Label lockedDoor6 = new Label("Door number 6 is locked", 30);
     
     // Add objects of actors
     Paper tutorialPaper = new Paper();
@@ -72,6 +79,27 @@ public class GameWorld extends World
         changeWorlds();
         if(isTutorial1 || isTutorial2){
             checkCrossTutorials();
+        }
+        if(timer.millisElapsed() > 2500){
+            if(room1TrashSearched){
+                removeObject(room1TrashText);
+            }
+            if(room2TrashSearched){
+                removeObject(room2TrashText);
+            }
+            if(room3TrashSearched){
+                removeObject(room3TrashText);
+            }
+            if(leftHallwayTrashSearched){
+                removeObject(leftHallwayTrashText);
+            }
+            if(rightHallwayTrashSearched){
+                removeObject(rightHallwayTrashText);
+            }
+        }
+        if(Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("s") || Greenfoot.isKeyDown("d")){
+            removeObject(lockedDoor4);
+            removeObject(lockedDoor6);
         }
     }
     
@@ -110,27 +138,37 @@ public class GameWorld extends World
             setBackground(roomWorld);
             roomBoundaries = true;
             addObject(wokeUpDialogue, 300, 310); 
+            timer.mark();
             if(player.getY() > 250){
-                spawned = false;
                 wakeUpInRoom = false;
                 roomBoundaries = false;
-                respawn(145, 185);
                 removeObject(wokeUpDialogue);
+                spawned = false;
+                respawn(145, 185);
                 isHallway = true;
             }
         }
-
+        
         if(isRoom1){
             isHallway = false;
             setBackground(roomWorld);
             roomBoundaries = true;
             addObject(emptyBasket, 290, 205);
-            addObject(room1Letter, 345, 190);
+            addObject(room1Letter, 330, 185);
+            if(!room1TrashSearched){
+                if(player.getX() > 360 && player.getY() < 205 && Greenfoot.isKeyDown("e")){
+                    addObject(room1TrashText, 300, 320);
+                    timer.mark();
+                    room1TrashSearched = true;
+                }
+            }
             if(player.getY() > 250){
                 spawned = false;
                 isRoom1 = false;
                 roomBoundaries = false;
                 respawn(45, 185);
+                removeObject(emptyBasket);
+                removeObject(room1Letter);
                 isHallway = true;
             }
         }
@@ -139,6 +177,13 @@ public class GameWorld extends World
             isHallway = false;
             setBackground(roomWorld);
             roomBoundaries = true;
+            if(!room2TrashSearched){
+                if(player.getX() > 360 && player.getY() < 205 && Greenfoot.isKeyDown("e")){
+                    addObject(room2TrashText, 300, 320);
+                    timer.mark();
+                    room2TrashSearched = true;
+                }
+            }
             if(player.getY() > 250){
                 spawned = false;
                 isRoom2 = false;
@@ -152,6 +197,13 @@ public class GameWorld extends World
             isHallway = false;
             setBackground(roomWorld);
             roomBoundaries = true;
+            if(!room3TrashSearched){
+                if(player.getX() > 360 && player.getY() < 205 && Greenfoot.isKeyDown("e")){
+                    addObject(room3TrashText, 300, 320);
+                    timer.mark();
+                    room3TrashSearched = true;
+                }
+            }
             if(player.getY() > 250){
                 spawned = false;
                 isRoom3 = false;
@@ -202,9 +254,23 @@ public class GameWorld extends World
         
         if(isHallway){
             setBackground(hallwayWorld);
+            if(Greenfoot.isKeyDown("e")){
+                if(!leftHallwayTrashSearched){
+                    if(player.getX() < 25 && player.getY() < 195){
+                        addObject(leftHallwayTrashText, 300, 320);
+                        leftHallwayTrashSearched = true;
+                    }
+                }
+                if(!rightHallwayTrashSearched){
+                    if(player.getX() > 550 && player.getY() < 195){
+                        addObject(rightHallwayTrashText, 300, 320);
+                        rightHallwayTrashSearched = true;
+                    }
+                }
+                timer.mark();
+            }
             hallwayRooms();
         }
-        
         
     }
    
@@ -232,6 +298,12 @@ public class GameWorld extends World
                 isRoom4 = true;
                 player.setLocation(340, 240);
             }
+            else{
+                addObject(lockedDoor4, 300, 330);
+                if(Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("s") || Greenfoot.isKeyDown("d")){
+                    removeObject(lockedDoor4);
+                }
+            }
         }
         if(player.getX() > 420 & player.getX() < 450 && player.getY() == 185 && Greenfoot.isKeyDown("e")){
             if(!lockedRoom5){
@@ -243,6 +315,9 @@ public class GameWorld extends World
             if(!lockedRoom6){
                 isRoom6 = true;
                 player.setLocation(340, 240);
+            }
+            else{
+                addObject(lockedDoor6, 300, 330);
             }
         }
     }
