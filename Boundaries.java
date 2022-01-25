@@ -73,7 +73,7 @@ public class Boundaries
                 GameWorld.player.setLocation(GameWorld.player.getX(), 155);                
             }
         }
-        else if(GameWorld.isRoom){
+        else if(GameWorld.roomBoundaries){
             // Right wall
             if(GameWorld.player.getX() > 370){
                 GameWorld.player.setLocation(370, GameWorld.player.getY());

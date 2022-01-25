@@ -10,10 +10,11 @@ public class GameWorld extends World
 {
     public static boolean isTutorial1, isTutorial2; 
     public static boolean isFoyer, isHallway;
-    public static boolean isRoom, isRoom1, isRoom2, isRoom3, isRoom4, isRoom5, isRoom6;
+    public static boolean isRoom1, isRoom2, isRoom3, isRoom4, isRoom5, isRoom6; 
+    public static boolean roomBoundaries;
     
     public boolean spawned;
-
+    
     boolean lockedRoom1 = false, lockedRoom2 = false, lockedRoom3 = false, lockedRoom4 = true, lockedRoom5 = false, lockedRoom6 = true;
     
     // A simple timer
@@ -51,9 +52,9 @@ public class GameWorld extends World
         isTutorial1 = true;
         isTutorial2 = false;
         isFoyer = false;
-        isHallway = false;
-        isRoom = false;
         isRoom2 = false;
+        isHallway = false;
+        roomBoundaries = false;
     }
     
     public void act(){
@@ -79,7 +80,6 @@ public class GameWorld extends World
                 isFoyer = true;
             }             
         }
-        
         if(isFoyer){
             setBackground(foyerWorld);
             removeObject(interact);
@@ -90,41 +90,49 @@ public class GameWorld extends World
             isFoyer = false;
             timer.mark();
         }
-        
-        if(isRoom2){
-            respawn(250, 210);
+        if(roomBoundaries){
             setBackground(roomWorld);
-            removeObject(foyerDialogue1);
-            isRoom = true;
             if(player.getY() > 240){
                 spawned = false;
                 isHallway = true;
-                isRoom = false;
-                isHallway = true;
+                roomBoundaries = false;
             }
+        }
+        
+        if(isRoom2){
+            respawn(250, 210);
+            removeObject(foyerDialogue1);
+            roomBoundaries = true;
         }
         
         if(isHallway){
             setBackground(hallwayWorld);
             respawn(145, 175);
-            enterHallwayRooms();
+            hallwayRooms();
+        }
+    }
+
+    public void exitingHallwayRooms(){
+        if(isRoom1){
+            if(player.getY() > 240){
+                isRoom1 = false;
+            }
         }
     }
     
-    public void checkRoomEntry(int fromX, int toX, boolean enterRoom, boolean lockedRoom){
+    public void checkRoomEntry(int fromX, int toX, boolean isRoom, boolean lockedRoom){
         if(player.getX() > fromX & player.getX() < toX && player.getY() == 185 && Greenfoot.isKeyDown("e")){
             if(!lockedRoom){
-                setBackground(roomWorld);
                 isRoom = true;
-                enterRoom = true;
                 isHallway = false;
                 spawned = false;
+                roomBoundaries = true;
                 player.setLocation(340, 240);
             }
         }
     }
     
-    public void enterHallwayRooms(){
+    public void hallwayRooms(){
         checkRoomEntry(30, 60, isRoom1, lockedRoom1);
         checkRoomEntry(130, 160, isRoom2, lockedRoom2);
         checkRoomEntry(230, 260, isRoom3, lockedRoom3);
