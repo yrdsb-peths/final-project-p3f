@@ -15,7 +15,7 @@ public class Demon extends Actor
     public void act()
     {
         setImage("Objects/Demon.png");
-        if(GameWorld.timer.millisElapsed() > 3000){
+        if(GameWorld.timer.millisElapsed() > 2500){
             checkY();
         }
     }
@@ -24,7 +24,7 @@ public class Demon extends Actor
         if(isTouching(MainCharacter.class)){
             getWorld().removeObject(this);
             MainCharacter.cutscene = false;
-            GameWorld.isRoom2 = true;
+            GameWorld.wakeUpInRoom = true;
         }
         else{
             setLocation(getX(), getY() + deltaX(1));
