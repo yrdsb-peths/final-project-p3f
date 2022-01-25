@@ -80,9 +80,7 @@ public class GameWorld extends World
     
     public void act(){
         changeWorlds();
-        if(isTutorial1 || isTutorial2){
-            checkCrossTutorials();
-        }
+        checkCrossTutorials();
         
         removeRoomLabels();
         
@@ -285,14 +283,13 @@ public class GameWorld extends World
             }
             hallwayRooms();
         }
-        
     }
     
     public void hallwayRooms(){ 
         if(player.getX() > 30 & player.getX() < 60 && player.getY() == 185 && Greenfoot.isKeyDown("e")){
             if(!lockedRoom1){
-                player.setLocation(340, 240);
                 isRoom1 = true;
+                player.setLocation(340, 240);
             }
         }
         if(player.getX() > 130 & player.getX() < 160 && player.getY() == 185 && Greenfoot.isKeyDown("e")){
@@ -314,9 +311,6 @@ public class GameWorld extends World
             }
             else{
                 addObject(lockedDoor4, 300, 330);
-                if(Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("s") || Greenfoot.isKeyDown("d")){
-                    removeObject(lockedDoor4);
-                }
             }
         }
         if(player.getX() > 420 & player.getX() < 450 && player.getY() == 185 && Greenfoot.isKeyDown("e")){
@@ -345,17 +339,19 @@ public class GameWorld extends World
     }
 
     public void checkCrossTutorials(){
-        if(player.getY() < 30 && player.getX() > 225 && player.getX() < 375 && Greenfoot.isKeyDown("w")){
-            setBackground(tutorialWorld2);
-            player.setLocation(300, 390);
-            isTutorial1 = false;
-            isTutorial2 = true;
-        }
-        else if(player.getY() > 370 && player.getX() > 225 && player.getX() < 375 && Greenfoot.isKeyDown("s")){
-            setBackground(tutorialWorld1);
-            player.setLocation(300, 25);
-            isTutorial1 = true;
-            isTutorial2 = false;
+        if(isTutorial1 || isTutorial2){
+            if(player.getY() < 30 && player.getX() > 225 && player.getX() < 375 && Greenfoot.isKeyDown("w")){
+                setBackground(tutorialWorld2);
+                player.setLocation(300, 390);
+                isTutorial1 = false;
+                isTutorial2 = true;
+            }
+            else if(player.getY() > 370 && player.getX() > 225 && player.getX() < 375 && Greenfoot.isKeyDown("s")){
+                setBackground(tutorialWorld1);
+                player.setLocation(300, 25);
+                isTutorial1 = true;
+                isTutorial2 = false;
+            }
         }
     }
 }
