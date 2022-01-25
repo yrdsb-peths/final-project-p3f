@@ -38,9 +38,13 @@ public class GameWorld extends World
     Label foyerDialogue = new Label("What the hell is that!?!?!", 30);
     Label wokeUpDialogue = new Label("Where am I?", 30);
     
-    Paper tutorialNote = new Paper();
     
+    // Add objects of actors
+    Paper tutorialPaper = new Paper();
+    Paper room1Letter = new Paper();
     Demon demon = new Demon();
+    EmptyBasket emptyBasket = new EmptyBasket();
+    
     /**
      * Constructor for objects of class TutorialWorld.
      * 
@@ -74,12 +78,12 @@ public class GameWorld extends World
     public void changeWorlds(){
         if(isTutorial1){
             addObject(movement, 115, 110);
-            removeObject(tutorialNote);
+            removeObject(tutorialPaper);
             removeObject(interact);
         }
         
         if(isTutorial2){
-            addObject(tutorialNote, 300, 300);
+            addObject(tutorialPaper, 300, 300);
             addObject(interact, 90, 300);
             removeObject(movement);
             if(player.getY() < 165 && Greenfoot.isKeyDown("e")){
@@ -92,7 +96,7 @@ public class GameWorld extends World
             MainCharacter.cutscene = true;
             setBackground(foyerWorld);
             removeObject(interact);
-            removeObject(tutorialNote);
+            removeObject(tutorialPaper);
             player.setLocation(300, 320);
             addObject(demon, 300, 185);
             addObject(foyerDialogue, 300, 370);
@@ -120,6 +124,8 @@ public class GameWorld extends World
             isHallway = false;
             setBackground(roomWorld);
             roomBoundaries = true;
+            addObject(emptyBasket, 290, 205);
+            addObject(room1Letter, 345, 190);
             if(player.getY() > 250){
                 spawned = false;
                 isRoom1 = false;
