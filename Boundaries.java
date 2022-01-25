@@ -102,7 +102,7 @@ public class Boundaries
             else if(GameWorld.player.getX() < 320 && GameWorld.player.getX() > 295 && GameWorld.player.getY() < 220){
                 GameWorld.player.setLocation(320, GameWorld.player.getY());
             }
-            // Shelf boundary
+            // Drawer boundary
             else if(GameWorld.player.getX() < 265 && GameWorld.player.getY() < 200){
                 GameWorld.player.setLocation(GameWorld.player.getX(), 200);
             }
