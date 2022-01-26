@@ -21,7 +21,7 @@ public class Key1 extends Actor
     public void checkGotKey(){
         if(GameWorld.isHallway){
             if(isTouching(MainCharacter.class) && Greenfoot.isKeyDown("e")){
-                GameWorld.hallwayHalfKey = true;
+                GameWorld.hallwayFirstHalfKey = true;
                 GameWorld game = (GameWorld) getWorld();
                 game.addObject(foundHalfKey, 300, 320);
                 getWorld().removeObject(this);

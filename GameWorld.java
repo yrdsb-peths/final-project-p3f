@@ -19,7 +19,7 @@ public class GameWorld extends World
 
     boolean lockedRoom1, lockedRoom2, lockedRoom3, lockedRoom4 = true, lockedRoom5, lockedRoom6 = true;
     
-    public static boolean room1Trash, room1Basket, room2Trash, room2Drawer, room3Trash, leftHallwayTrash, rightHallwayTrash, hallwayHalfKey;
+    public static boolean room1Trash, room1Basket, room2Trash, room2NeedleAndThread, room3Trash, leftHallwayTrash, rightHallwayTrash, hallwayFirstHalfKey, hallWaySecondHalfKey;
     
     public static boolean pieceOne, pieceTwo, pieceThree, pieceFour, pieceFive, needleAndThread;
     
@@ -40,22 +40,20 @@ public class GameWorld extends World
     Label movement = new Label("Use W, A, S, D \n to move", 30);
     Label interact = new Label("Use E to \ninteract with\n objects", 35);
     
-    public static Label foyerDialogue = new Label("What the hell is that!?!?!", 30);
-    public static Label wokeUpDialogue = new Label("Where am I?", 30);
-    public static Label room1TrashText = new Label("You found the body & head \n(piece one of five)", 30);
-    public static Label room2TrashText = new Label("You found a teddy bear arm \n(piece two of five)", 30);
-    public static Label room2DrawerText = new Label("You found a needle and thread", 30);
-    public static Label room3TrashText = new Label("You found a teddy bear arm \n(piece three of five)", 30);
-    public static Label leftHallwayTrashText = new Label("You found a limb \n(piece four of five)", 30);
-    public static Label rightHallwayTrashText = new Label("You found a limb \n(piece five of five)", 30);
+    Label foyerDialogue = new Label("What the hell is that!?!?!", 30);
+    Label wokeUpDialogue = new Label("Where am I?", 30);
+    Label room1TrashText = new Label("You found the body & head \n(piece one of five)", 30);
+    Label room2TrashText = new Label("You found a teddy bear arm \n(piece two of five)", 30);
+    Label room2DrawerText = new Label("You found a needle and thread \nto sew the bear", 30);
+    Label room3TrashText = new Label("You found a teddy bear arm \n(piece three of five)", 30);
+    Label leftHallwayTrashText = new Label("You found a limb \n(piece four of five)", 30);
+    Label rightHallwayTrashText = new Label("You found a limb \n(piece five of five)", 30);
     
     Label lockedDoor4 = new Label("Door number 4 is locked", 30);
     Label lockedDoor6 = new Label("Door number 6 is locked", 30);
     
     // Create objects of actors
-    Paper tutorialPaper = new Paper();
-    Paper room1Letter = new Paper();
-    Paper room3Letter = new Paper();
+    Paper note = new Paper();
     Demon demon = new Demon();
     Basket emptyBasket = new Basket();
     EvilBear bear = new EvilBear();
@@ -100,7 +98,7 @@ public class GameWorld extends World
     
     public void removeRoomLabels(){
         if(timer.millisElapsed() > 2500){
-            if(room1Trash || room1Basket || room2Trash || room3Trash || leftHallwayTrash || rightHallwayTrash || hallwayHalfKey){
+            if(room1Trash || room1Basket || room2Trash || room3Trash || leftHallwayTrash || rightHallwayTrash || hallwayFirstHalfKey){
                 removeObject(room1TrashText);
                 removeObject(room2TrashText);
                 removeObject(room3TrashText);
@@ -111,7 +109,7 @@ public class GameWorld extends World
             }
         }
         if(timer.millisElapsed() > 3500){
-            if(room2Drawer){
+            if(room2NeedleAndThread){
                 removeObject(room2DrawerText);
             }
         }
@@ -141,18 +139,18 @@ public class GameWorld extends World
     public void changeWorlds(){
         if(isTutorial1){
             addObject(movement, 115, 110);
-            removeObject(tutorialPaper);
+            removeObject(note);
             removeObject(interact);
         }
         
         if(isTutorial2){
-            addObject(tutorialPaper, 290, 300);
+            addObject(note, 290, 300);
             addObject(interact, 90, 290);
             removeObject(movement);
             if(player.getY() < 160 && Greenfoot.isKeyDown("e")){
                 isTutorial2 = false;
                 isFoyer = true;
-                removeObject(tutorialPaper);
+                removeObject(note);
                 removeObject(interact);
             }             
         }
@@ -182,7 +180,7 @@ public class GameWorld extends World
         if(isRoom1){
             createRoom();
             addObject(emptyBasket, 290, 205);
-            addObject(room1Letter, 330, 185);
+            addObject(note, 330, 185);
             if(!room1Trash){
                 if(GameWorld.player.getX() > 360 && player.getY() < 205 && Greenfoot.isKeyDown("e")){
                     addObject(room1TrashText, 300, 320);
@@ -195,7 +193,7 @@ public class GameWorld extends World
             if(player.getY() > 250){
                 removeObject(room1TrashText);
                 removeObject(emptyBasket);
-                removeObject(room1Letter);
+                removeObject(note);
                 removeObject(Basket.failedRoom1Task);
                 if(Basket.sewedBearProperly){
                     addObject(halfRoom4Key, 45, 230);
@@ -222,11 +220,11 @@ public class GameWorld extends World
                         pieceTwo = true;
                     }
                 }
-                if(!room2Drawer){
+                if(!room2NeedleAndThread){
                     if(player.getX() < 290 && player.getY() < 210){
                         removeObject(room2TrashText);
                         addObject(room2DrawerText, 300, 320);
-                        room2Drawer = true;
+                        room2NeedleAndThread = true;
                         needleAndThread = true;
                     }
                 }
@@ -250,9 +248,9 @@ public class GameWorld extends World
                     pieceThree = true;
                 }
             }
-            if(hallwayHalfKey){
+            if(hallwayFirstHalfKey){
                 addObject(emptyBasket, 290, 205);
-                addObject(room3Letter, 330, 185);
+                addObject(note, 330, 185);
             }
             if(player.getY() > 250){
                 removeObject(room3TrashText);

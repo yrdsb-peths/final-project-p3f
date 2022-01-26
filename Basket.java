@@ -38,7 +38,6 @@ public class Basket extends Actor
                     failed.play();
                     GameWorld game = (GameWorld) getWorld();
                     game.addObject(failedRoom1Task, 300, 320);
-                    game.removeObject(GameWorld.room1TrashText);
                     GameWorld.timer.mark();
                 }
                 
