@@ -30,10 +30,10 @@ public class Paper extends Actor
         if(GameWorld.isTutorial2){
             GameWorld game = (GameWorld) getWorld();
             if(isTouching(MainCharacter.class) && Greenfoot.isKeyDown("e")){
-                game.addObject(tutorialLargePaper, 300, 200);
+                game.addObject(tutorialLargePaper, 290, 200);
                 tutorialText.setFillColor(Color.BLACK);
                 tutorialText.setLineColor(Color.WHITE);
-                game.addObject(tutorialText, 300, 190);
+                game.addObject(tutorialText, 290, 190);
             }
             if(isTouching(MainCharacter.class) == false){
                 game.removeObject(tutorialLargePaper);

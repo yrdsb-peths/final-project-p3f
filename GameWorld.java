@@ -17,7 +17,7 @@ public class GameWorld extends World
 
     public boolean spawned;
 
-    boolean lockedRoom1, lockedRoom2, lockedRoom3, lockedRoom4, lockedRoom5, lockedRoom6;
+    boolean lockedRoom1, lockedRoom2, lockedRoom3, lockedRoom4 = true, lockedRoom5, lockedRoom6 = true;
     
     public static boolean room1Trash, room1Basket, room2Trash, room2Drawer, room3Trash, leftHallwayTrash, rightHallwayTrash;
     
@@ -93,7 +93,7 @@ public class GameWorld extends World
         isFoyer = false;
         isHallway = false;
         wakeUpInRoom = false;
-        boolean isRoom1 = false, isRoom2 = false, isRoom3 = false, isRoom4 = true, isRoom5 = false, isRoom6 = true;
+        boolean isRoom1 = false, isRoom2 = false, isRoom3 = false, isRoom4 = false, isRoom5 = false, isRoom6 = false;
         boolean room1Trash = false, room1Basket = false, room2Trash = false, room2Drawer = false, room3Trash = false, leftHallwayTrash = false, rightHallwayTrash = false;
         boolean pieceOne = false, pieceTwo = false, pieceThree = false, pieceFour = false, pieceFive = false, needleAndThread = false;
         boolean gotKey1, gotKey2, gotKey3;
@@ -146,8 +146,8 @@ public class GameWorld extends World
         }
         
         if(isTutorial2){
-            addObject(tutorialPaper, 300, 300);
-            addObject(interact, 90, 300);
+            addObject(tutorialPaper, 290, 300);
+            addObject(interact, 90, 290);
             removeObject(movement);
             if(player.getY() < 160 && Greenfoot.isKeyDown("e")){
                 isTutorial2 = false;
