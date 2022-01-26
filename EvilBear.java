@@ -15,7 +15,7 @@ public class EvilBear extends Actor
     public void act()
     {
         setImage("Objects/TeddyBear.png");
-        if(GameWorld.timer.millisElapsed() > 2000){
+        if(GameWorld.timer.millisElapsed() > 1500){
             checkY();
         }
         

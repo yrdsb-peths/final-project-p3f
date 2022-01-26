@@ -19,11 +19,10 @@ public class GameWorld extends World
 
     boolean lockedRoom1, lockedRoom2, lockedRoom3, lockedRoom4 = true, lockedRoom5, lockedRoom6 = true;
     
-    public static boolean room1Trash, room1Basket, room2Trash, room2Drawer, room3Trash, leftHallwayTrash, rightHallwayTrash;
+    public static boolean room1Trash, room1Basket, room2Trash, room2Drawer, room3Trash, leftHallwayTrash, rightHallwayTrash, hallwayHalfKey;
     
     public static boolean pieceOne, pieceTwo, pieceThree, pieceFour, pieceFive, needleAndThread;
     
-    boolean gotKey1, gotKey2, gotKey3;
     // A simple timer
     public static SimpleTimer timer = new SimpleTimer();
     
@@ -59,7 +58,7 @@ public class GameWorld extends World
     Demon demon = new Demon();
     Basket emptyBasket = new Basket();
     EvilBear bear = new EvilBear();
-    Key1 room4Key = new Key1();
+    Key1 halfRoom4Key = new Key1();
     
     /**
      * Constructor for objects of class TutorialWorld.
@@ -96,18 +95,18 @@ public class GameWorld extends World
         boolean isRoom1 = false, isRoom2 = false, isRoom3 = false, isRoom4 = false, isRoom5 = false, isRoom6 = false;
         boolean room1Trash = false, room1Basket = false, room2Trash = false, room2Drawer = false, room3Trash = false, leftHallwayTrash = false, rightHallwayTrash = false;
         boolean pieceOne = false, pieceTwo = false, pieceThree = false, pieceFour = false, pieceFive = false, needleAndThread = false;
-        boolean gotKey1, gotKey2, gotKey3;
     } 
     
     public void removeRoomLabels(){
         if(timer.millisElapsed() > 2500){
-            if(room1Trash || room1Basket || room2Trash || room3Trash || leftHallwayTrash || rightHallwayTrash){
+            if(room1Trash || room1Basket || room2Trash || room3Trash || leftHallwayTrash || rightHallwayTrash || hallwayHalfKey){
                 removeObject(room1TrashText);
                 removeObject(room2TrashText);
                 removeObject(room3TrashText);
                 removeObject(leftHallwayTrashText);
                 removeObject(rightHallwayTrashText);
                 removeObject(Basket.failedRoom1Task);
+                removeObject(Key1.foundHalfKey);
             }
         }
         if(timer.millisElapsed() > 3500){
@@ -198,7 +197,7 @@ public class GameWorld extends World
                 removeObject(room1Letter);
                 removeObject(Basket.failedRoom1Task);
                 if(Basket.sewedBearProperly){
-                    addObject(room4Key, 45, 230);
+                    addObject(halfRoom4Key, 45, 230);
                 }
                 if(Basket.sewedBearFail){
                     addObject(bear, 530, 200);
@@ -249,6 +248,7 @@ public class GameWorld extends World
                     pieceThree = true;
                 }
             }
+        
             if(player.getY() > 250){
                 removeObject(room3TrashText);
                 leaveRoom();

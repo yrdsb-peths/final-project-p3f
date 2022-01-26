@@ -21,29 +21,30 @@ public class Basket extends Actor
     public void act()
     {
         setImage("Objects/EmptyBasket.png");
-        checkSewedBear();
-    
+        checkSewedBear();    
     }
     
     public void checkSewedBear(){
-        if(isTouching(MainCharacter.class) && Greenfoot.isKeyDown("e")){
-            GameWorld.room1Basket = true;
-            if(GameWorld.pieceOne && GameWorld.pieceTwo && GameWorld.pieceThree && GameWorld.pieceFour && GameWorld.pieceFive && GameWorld.needleAndThread){
-                sewedBearProperly = true;
-                achieved.play();
+        if(GameWorld.isRoom1){
+            if(isTouching(MainCharacter.class) && Greenfoot.isKeyDown("e")){
+                GameWorld.room1Basket = true;
+                if(GameWorld.pieceOne && GameWorld.pieceTwo && GameWorld.pieceThree && GameWorld.pieceFour && GameWorld.pieceFive && GameWorld.needleAndThread){
+                    sewedBearProperly = true;
+                    achieved.play();
+                }
+                
+                if(!GameWorld.pieceOne || !GameWorld.pieceTwo || !GameWorld.pieceThree || !GameWorld.pieceFour || !GameWorld.pieceFive || !GameWorld.needleAndThread){
+                    sewedBearFail = true;
+                    failed.play();
+                    GameWorld game = (GameWorld) getWorld();
+                    game.addObject(failedRoom1Task, 300, 320);
+                    game.removeObject(GameWorld.room1TrashText);
+                    GameWorld.timer.mark();
+                }
             }
-            
-            if(!GameWorld.pieceOne || !GameWorld.pieceTwo || !GameWorld.pieceThree || !GameWorld.pieceFour || !GameWorld.pieceFive || !GameWorld.needleAndThread){
-                sewedBearFail = true;
-                failed.play();
-                GameWorld game = (GameWorld) getWorld();
-                game.addObject(failedRoom1Task, 300, 320);
-                game.removeObject(GameWorld.room1TrashText);
-                GameWorld.timer.mark();
-            }
-            if(sewedBearProperly){
-                setImage("Objects/BearBasket.png");
-            }
+        }
+        if(sewedBearProperly){
+            setImage("Objects/BearBasket.png");
         }
     }
 }
