@@ -8,26 +8,32 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GameWorld extends World
 {
+    // Booleans to check the background of world
     public static boolean isTutorial1, isTutorial2; 
     public static boolean isFoyer, isHallway;
     public static boolean isRoom1, isRoom2, isRoom3, isRoom5; 
     public static boolean wakeUpInRoom;
     
+    // Check if boundaries for a room should be set
     public static boolean roomBoundaries;
 
+    // To keep track of respawning the player
     public boolean spawned;
 
+    // Check if rooms are locked 
     public static boolean lockedRoom1, lockedRoom2, lockedRoom3, lockedRoom4 = true, lockedRoom5, lockedRoom6 = true;
     
+    // Check if items have been searched
     public static boolean room1Trash, room1Basket, room2Trash, room2NeedleAndThread, room3Trash, room3Basket, room1Book, room5Book; 
     public static boolean leftHallwayTrash, rightHallwayTrash, hallwayFirstHalfKey, hallwaySecondHalfKey;
     
+    // Room 1 task pieces to be found
     public static boolean pieceOne, pieceTwo, pieceThree, pieceFour, pieceFive, needleAndThread;
     
     // A simple timer
     public static SimpleTimer timer = new SimpleTimer();
     
-    // Worlds
+    // Backgrounds for world
     GreenfootImage tutorialWorld1 = new GreenfootImage("Worlds/TutorialWorld1.png");
     GreenfootImage tutorialWorld2 = new GreenfootImage("Worlds/TutorialWorld2.png");
     GreenfootImage foyerWorld = new GreenfootImage("Worlds/Foyer.png");
@@ -37,10 +43,9 @@ public class GameWorld extends World
     // Create character
     public static MainCharacter player = new MainCharacter();
     
-    // Create instruction labels
+    // Create labels
     Label movement = new Label("Use W, A, S, D \n to move", 30);
     Label interact = new Label("Use E to \ninteract with\n objects", 35);
-    
     Label foyerDialogue = new Label("What the hell is that!?!?!", 30);
     Label wokeUpDialogue = new Label("Where am I?", 30);
     Label room1TrashText = new Label("You found the body & head \n(piece one of five)", 30);
@@ -51,11 +56,10 @@ public class GameWorld extends World
     Label rightHallwayTrashText = new Label("You found a limb \n(piece five of five)", 30);
     Label room1BookText = new Label("You found a book called '25 December Wishes'", 30);
     Label room5BookText = new Label("You found a book called 'REDRUM'", 30);
-    
     Label lockedDoor4 = new Label("Door number 4 is locked", 30);
     Label lockedDoor6 = new Label("Door number 6 is locked", 30);
     
-    //Sound Effects
+    // Sound Effect
     GreenfootSound rain = new GreenfootSound("Sound Effect - 'Rain & Thunder'.wav");
     
     // Create objects of actors
@@ -65,6 +69,7 @@ public class GameWorld extends World
     EvilBear bear = new EvilBear();
     Keys firstHalfExitKey = new Keys();
     Keys secondHalfExitKey = new Keys();
+    
     /**
      * Constructor for objects of class TutorialWorld.
      * 
@@ -84,12 +89,14 @@ public class GameWorld extends World
         checkCrossTutorials();
         removeRoomLabels();
         
+        // If doors are locked, remove "it's locked" texts when player moves.
         if(Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("s") || Greenfoot.isKeyDown("d")){
             removeObject(lockedDoor4);
             removeObject(lockedDoor6);
         }
     }
     
+    // Method to play rain sound
     public void rainSound(){
         if(isTutorial1 || isTutorial2 || isFoyer){
             rain.setVolume(0);
@@ -100,6 +107,7 @@ public class GameWorld extends World
         }
     }
     
+    // Method to restore the values of variables
     public void reset(){
         MainCharacter.cutscene = false;
         isTutorial1 = true;
@@ -113,6 +121,7 @@ public class GameWorld extends World
         boolean pieceOne = false, pieceTwo = false, pieceThree = false, pieceFour = false, pieceFive = false, needleAndThread = false;
     } 
     
+    // Labels show up from searching for items within the rooms and this method removes them after a few seconds.
     public void removeRoomLabels(){
         if(timer.millisElapsed() > 2500){
             if(room1Basket || room3Basket || room1Trash || room2Trash || room3Trash || room1Book || room5Book || leftHallwayTrash || rightHallwayTrash || hallwayFirstHalfKey || hallwaySecondHalfKey){
@@ -136,6 +145,7 @@ public class GameWorld extends World
         }
     }
     
+    // Set the world when the player is in a room
     public void createRoom(){
         isHallway = false;
         setBackground(roomWorld);
@@ -144,6 +154,7 @@ public class GameWorld extends World
         removeObject(leftHallwayTrashText);
     }
     
+    // Set the world for when the player leaves a room
     public void leaveRoom(){
         spawned = false;
         roomBoundaries = false;
@@ -153,15 +164,28 @@ public class GameWorld extends World
         isRoom3 = false;
         isRoom5 = false;
         isHallway = true;
+        removeObject(room1TrashText);
+        removeObject(emptyBasket);
+        removeObject(note);
+        removeObject(Basket.failedRoom1Task);
+        removeObject(room1BookText);
+        removeObject(room2TrashText);
+        removeObject(room2DrawerText);
+        removeObject(room3TrashText);
+        removeObject(Basket.failedRoom3Task);
+        removeObject(room5BookText);
     }
 
+    // Create a method to change the world when you switch between backgrounds.
     public void changeWorlds(){
+        // if the world's background is tutorial world 1
         if(isTutorial1){
             addObject(movement, 115, 110);
             removeObject(note);
             removeObject(interact);
         }
         
+        // if the world's background is tutorial world 2
         if(isTutorial2){
             addObject(note, 290, 300);
             addObject(interact, 90, 290);
@@ -174,6 +198,7 @@ public class GameWorld extends World
             }             
         }
         
+        // if the world's background is foyer world
         if(isFoyer){
             isFoyer = false;
             player.setLocation(300, 320);
@@ -184,6 +209,7 @@ public class GameWorld extends World
             timer.mark();
         }
         
+        // if player wakes up in a strange room
         if(wakeUpInRoom){
             removeObject(foyerDialogue);
             respawn(250, 210);
@@ -196,6 +222,7 @@ public class GameWorld extends World
             }
         }
         
+        // if player is in room 1, start a task to find the first half of a key. If it's found, give another task to find the second half of the key.
         if(isRoom1){
             createRoom();
             if(!hallwayFirstHalfKey){
@@ -214,15 +241,11 @@ public class GameWorld extends World
             if(!room1Book){
                 if(player.getX() < 290 && player.getY() < 210 && Greenfoot.isKeyDown("e") && hallwayFirstHalfKey){
                     addObject(room1BookText, 300, 320);
+                    removeObject(room1TrashText);
                     room1Book = true;
                 }
             }
             if(player.getY() > 250){
-                removeObject(room1TrashText);
-                removeObject(emptyBasket);
-                removeObject(note);
-                removeObject(Basket.failedRoom1Task);
-                removeObject(room1BookText);
                 if(Basket.sewedBearProperly){
                     hallwayFirstHalfKey = true;
                     addObject(firstHalfExitKey, 45, 230);
@@ -238,6 +261,7 @@ public class GameWorld extends World
             }
         }
         
+        // if it's room 2, set up items in room
         if(isRoom2){
             createRoom();
             if(Greenfoot.isKeyDown("e")){
@@ -260,13 +284,12 @@ public class GameWorld extends World
                 timer.mark();
             }
             if(player.getY() > 250){
-                removeObject(room2TrashText);
-                removeObject(room2DrawerText);
                 leaveRoom();
                 respawn(145, 185);
             }
         }
         
+        // Room 3 is where the task for the second half of the key will start and it'll be used for the first task
         if(isRoom3){
             createRoom();
             if(!room3Trash){
@@ -282,10 +305,6 @@ public class GameWorld extends World
                 addObject(note, 330, 185);
             }
             if(player.getY() > 250){
-                removeObject(room3TrashText);
-                removeObject(emptyBasket);
-                removeObject(note);
-                removeObject(Basket.failedRoom3Task);
                 if(Basket.bookBasketCorrect){
                     hallwayFirstHalfKey = false;
                     hallwaySecondHalfKey = true;
@@ -302,6 +321,7 @@ public class GameWorld extends World
             }
         }
         
+        // Set up room 5 and put an item (book) for task two
         if(isRoom5){
             createRoom();
             if(!room5Book){
@@ -311,12 +331,12 @@ public class GameWorld extends World
                 }
             }
             if(player.getY() > 250){
-                removeObject(room5BookText);
                 leaveRoom();
                 respawn(435, 185);
             }
         }
         
+        // Set up the hallway
         if(isHallway){
             setBackground(hallwayWorld);
             if(Greenfoot.isKeyDown("e")){
@@ -340,6 +360,7 @@ public class GameWorld extends World
         }
     }
     
+    // A method to check if player is entering the rooms
     public void hallwayRooms(){ 
         if(player.getX() > 30 & player.getX() < 60 && player.getY() == 185 && Greenfoot.isKeyDown("e")){
             if(!lockedRoom1){
@@ -381,6 +402,11 @@ public class GameWorld extends World
         }
     }
     
+    /** 
+     * Removes the main character and then adds him again
+     * @param x - The x coordinate
+     * @param y - the y coordinate
+     */
     public void respawn(int x, int y){
         if(!spawned){
             removeObject(player);
@@ -389,6 +415,7 @@ public class GameWorld extends World
         }
     }
 
+    // Method to cross between tutorial world 1 and tutorial world 2
     public void checkCrossTutorials(){
         if(isTutorial1 || isTutorial2){
             if(player.getY() < 30 && player.getX() > 225 && player.getX() < 375 && Greenfoot.isKeyDown("w")){

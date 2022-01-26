@@ -6,6 +6,7 @@ comment1.target=GameWorld()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ TutorialWorld.\r\n\ \r\n
 comment10.params=x\ y
 comment10.target=void\ respawn(int,\ int)
+comment10.text=\ \r\n\ Removes\ the\ main\ character\ and\ then\ adds\ him\ again\r\n\ @param\ x\ -\ The\ x\ coordinate\r\n\ @param\ y\ -\ the\ y\ coordinate\r\n
 comment11.params=
 comment11.target=void\ checkCrossTutorials()
 comment2.params=
