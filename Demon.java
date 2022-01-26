@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Demon here.
+ * Demon designed to attack the main character
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Sameer Hidery, Murtaza Asrani, Keira Sutharsanaraj
  */
 public class Demon extends Actor
 {
@@ -20,6 +19,7 @@ public class Demon extends Actor
         }
     }
     
+    // Method to move the demon and remove it if in contact with the player
     public void checkY(){
         if(isTouching(MainCharacter.class)){
             getWorld().removeObject(this);
@@ -31,6 +31,7 @@ public class Demon extends Actor
         }
     }
     
+    // Recursive method to set the speed of the moving demon
     public int deltaX(int n){
         if(n >= 4){
             return 0;

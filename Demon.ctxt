@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Demon
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Demon\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Demon\ designed\ to\ attack\ the\ main\ character\r\n\ \r\n\ Sameer\ Hidery,\ Murtaza\ Asrani,\ Keira\ Sutharsanaraj\r\n
 comment1.params=
 comment1.target=void\ act()
 comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Demon\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n

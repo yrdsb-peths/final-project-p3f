@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * A basket to put certain items inside
  * 
- * @@author Sameer Hidery, Murtaza Asrani, Keira Sutharsanaraj
+ * @author Sameer Hidery, Murtaza Asrani, Keira Sutharsanaraj
  */
 public class Basket extends Actor
 {
