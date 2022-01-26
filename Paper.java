@@ -37,17 +37,17 @@ public class Paper extends Actor
             if(GameWorld.isTutorial2){
                 tutorialText.setFillColor(Color.BLACK);
                 tutorialText.setLineColor(Color.WHITE);
-                game.addObject(tutorialText, 290, 190);
+                game.addObject(tutorialText, 300, 190);
             }
             if(GameWorld.isRoom1){
                 room1Text.setFillColor(Color.BLACK);
                 room1Text.setLineColor(Color.WHITE);
-                game.addObject(room1Text, 295, 200);
+                game.addObject(room1Text, 300, 200);
             }
             if(GameWorld.isRoom3){
                 room3Text.setFillColor(Color.BLACK);
                 room3Text.setLineColor(Color.WHITE);
-                game.addObject(room3Text, 295, 200);
+                game.addObject(room3Text, 300, 200);
             }
         }
         if(isTouching(MainCharacter.class) == false){

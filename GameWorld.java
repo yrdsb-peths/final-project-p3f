@@ -19,7 +19,8 @@ public class GameWorld extends World
 
     boolean lockedRoom1, lockedRoom2, lockedRoom3, lockedRoom4 = true, lockedRoom5, lockedRoom6 = true;
     
-    public static boolean room1Trash, room1Basket, room2Trash, room2NeedleAndThread, room3Trash, leftHallwayTrash, rightHallwayTrash, hallwayFirstHalfKey, hallWaySecondHalfKey;
+    public static boolean room1Trash, room1Basket, room2Trash, room2NeedleAndThread, room3Trash, room3Basket, room1Book, room3Book, room5Book; 
+    public static boolean leftHallwayTrash, rightHallwayTrash, hallwayFirstHalfKey, hallwaySecondHalfKey;
     
     public static boolean pieceOne, pieceTwo, pieceThree, pieceFour, pieceFive, needleAndThread;
     
@@ -48,6 +49,9 @@ public class GameWorld extends World
     Label room3TrashText = new Label("You found a teddy bear arm \n(piece three of five)", 30);
     Label leftHallwayTrashText = new Label("You found a limb \n(piece four of five)", 30);
     Label rightHallwayTrashText = new Label("You found a limb \n(piece five of five)", 30);
+    Label room1BookText = new Label("You found a book called '25 December Wishes'", 30);
+    Label room3BookText = new Label("You found a book called 'The Knight’s Tale'", 30);
+    Label room5BookText = new Label("You found a book called 'REDRUM'", 30);
     
     Label lockedDoor4 = new Label("Door number 4 is locked", 30);
     Label lockedDoor6 = new Label("Door number 6 is locked", 30);
@@ -57,8 +61,8 @@ public class GameWorld extends World
     Demon demon = new Demon();
     Basket emptyBasket = new Basket();
     EvilBear bear = new EvilBear();
-    Key1 halfRoom4Key = new Key1();
-    
+    Keys firstHalfExitKey = new Keys();
+    Keys secondHalfExitKey = new Keys();
     /**
      * Constructor for objects of class TutorialWorld.
      * 
@@ -98,14 +102,19 @@ public class GameWorld extends World
     
     public void removeRoomLabels(){
         if(timer.millisElapsed() > 2500){
-            if(room1Trash || room1Basket || room2Trash || room3Trash || leftHallwayTrash || rightHallwayTrash || hallwayFirstHalfKey){
+            if(room1Basket || room3Basket || room1Trash || room2Trash || room3Trash || room1Book || room3Book || room5Book || leftHallwayTrash || rightHallwayTrash || hallwayFirstHalfKey || hallwaySecondHalfKey){
+                removeObject(Basket.failedRoom1Task);
+                removeObject(Basket.failedRoom3Task);
                 removeObject(room1TrashText);
                 removeObject(room2TrashText);
                 removeObject(room3TrashText);
+                removeObject(room1BookText);
+                removeObject(room3BookText);
+                removeObject(room5BookText);
                 removeObject(leftHallwayTrashText);
                 removeObject(rightHallwayTrashText);
-                removeObject(Basket.failedRoom1Task);
-                removeObject(Key1.foundHalfKey);
+                removeObject(Keys.foundHalfKey);
+                removeObject(Keys.foundOtherHalfKey);
             }
         }
         if(timer.millisElapsed() > 3500){
@@ -179,8 +188,10 @@ public class GameWorld extends World
         
         if(isRoom1){
             createRoom();
-            addObject(emptyBasket, 290, 205);
-            addObject(note, 330, 185);
+            if(!hallwayFirstHalfKey){
+                addObject(emptyBasket, 290, 205);
+                addObject(note, 330, 185);
+            }
             if(!room1Trash){
                 if(GameWorld.player.getX() > 360 && player.getY() < 205 && Greenfoot.isKeyDown("e")){
                     addObject(room1TrashText, 300, 320);
@@ -190,13 +201,21 @@ public class GameWorld extends World
                     pieceOne = true;
                 }
             }
+            if(!room1Book){
+                if(player.getX() < 290 && player.getY() < 210 && Greenfoot.isKeyDown("e") && hallwayFirstHalfKey){
+                    addObject(room1BookText, 300, 320);
+                    room1Book = true;
+                }
+            }
             if(player.getY() > 250){
                 removeObject(room1TrashText);
                 removeObject(emptyBasket);
                 removeObject(note);
                 removeObject(Basket.failedRoom1Task);
+                removeObject(room1BookText);
                 if(Basket.sewedBearProperly){
-                    addObject(halfRoom4Key, 45, 230);
+                    hallwayFirstHalfKey = true;
+                    addObject(firstHalfExitKey, 45, 230);
                     Basket.sewedBearProperly = false;
                 }
                 if(Basket.sewedBearFail){
@@ -248,12 +267,33 @@ public class GameWorld extends World
                     pieceThree = true;
                 }
             }
+            if(!room3Book){
+                if(player.getX() < 290 && player.getY() < 210 && Greenfoot.isKeyDown("e") && hallwayFirstHalfKey){
+                    addObject(room3BookText, 300, 320);
+                    room3Book = true;
+                }
+            }
             if(hallwayFirstHalfKey){
                 addObject(emptyBasket, 290, 205);
                 addObject(note, 330, 185);
             }
             if(player.getY() > 250){
                 removeObject(room3TrashText);
+                removeObject(room3BookText);
+                removeObject(emptyBasket);
+                removeObject(note);
+                removeObject(Basket.failedRoom3Task);
+                if(Basket.bookBasketCorrect){
+                    hallwayFirstHalfKey = false;
+                    hallwaySecondHalfKey = true;
+                    addObject(secondHalfExitKey, 45, 230);
+                    Basket.bookBasketCorrect = false;
+                }
+                if(Basket.bookBasketFailed){
+                    addObject(bear, 530, 200);
+                    MainCharacter.cutscene = true;
+                    timer.mark();
+                }
                 leaveRoom();
                 respawn(245, 185);
             }
@@ -269,7 +309,14 @@ public class GameWorld extends World
         
         if(isRoom5){
             createRoom();
+            if(!room5Book){
+                if(player.getX() < 290 && player.getY() < 210 && Greenfoot.isKeyDown("e") && hallwayFirstHalfKey){
+                    addObject(room5BookText, 300, 320);
+                    room5Book = true;
+                }
+            }
             if(player.getY() > 250){
+                removeObject(room5BookText);
                 leaveRoom();
                 respawn(435, 185);
             }
@@ -328,7 +375,6 @@ public class GameWorld extends World
         if(player.getX() > 320 & player.getX() < 350 && player.getY() == 185 && Greenfoot.isKeyDown("e")){
             if(!lockedRoom4){
                 isRoom4 = true;
-                player.setLocation(340, 240);
             }
             else{
                 addObject(lockedDoor4, 300, 330);
@@ -342,8 +388,7 @@ public class GameWorld extends World
         }
         if(player.getX() > 510 & player.getX() < 550 && player.getY() == 185 && Greenfoot.isKeyDown("e")){
             if(!lockedRoom6){
-                isRoom6 = true;
-                player.setLocation(340, 240);
+                removeObject(player);
             }
             else{
                 addObject(lockedDoor6, 300, 330);

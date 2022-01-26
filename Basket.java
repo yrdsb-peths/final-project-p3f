@@ -12,8 +12,12 @@ public class Basket extends Actor
     GreenfootSound failed = new GreenfootSound("wrong.mp3");
     public static boolean sewedBearFail;
     public static boolean sewedBearProperly;
-    public static Label failedRoom1Task = new Label("You failed. Find 5 pieces and the needle & \n thread BEFORE interacting with the basket", 30);
     
+    public static boolean bookBasketCorrect;
+    public static boolean bookBasketFailed;
+    
+    public static Label failedRoom1Task = new Label("You failed. Find 5 pieces and the needle & \n thread BEFORE interacting with the basket", 30);
+    public static Label failedRoom3Task = new Label("You failed to place the correct book in the basket", 30);
     /**
      * Act - do whatever the EmptyBasket wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -21,7 +25,8 @@ public class Basket extends Actor
     public void act()
     {
         setImage("Objects/EmptyBasket.png");
-        checkSewedBear();    
+        checkSewedBear();  
+        checkCorrectBook();
     }
     
     public void checkSewedBear(){
@@ -45,6 +50,26 @@ public class Basket extends Actor
         }
         if(sewedBearProperly){
             setImage("Objects/BearBasket.png");
+        }
+    }
+    public void checkCorrectBook(){
+        if(GameWorld.isRoom3 && GameWorld.hallwayFirstHalfKey){
+            if(isTouching(MainCharacter.class) && Greenfoot.isKeyDown("e")){
+                if(GameWorld.room5Book = true){
+                    bookBasketCorrect = true;
+                    achieved.play();
+                }
+                else{
+                    bookBasketFailed = true;
+                    failed.play();
+                    GameWorld game = (GameWorld) getWorld();
+                    game.addObject(failedRoom3Task, 300, 320);
+                    GameWorld.timer.mark();
+                }
+            }
+            if(bookBasketCorrect){
+                setImage("Objects/BookBasket.png");
+            }
         }
     }
 }
