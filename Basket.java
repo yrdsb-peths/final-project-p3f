@@ -41,6 +41,7 @@ public class Basket extends Actor
                     game.removeObject(GameWorld.room1TrashText);
                     GameWorld.timer.mark();
                 }
+                
             }
         }
         if(sewedBearProperly){

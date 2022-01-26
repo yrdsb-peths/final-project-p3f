@@ -16,7 +16,7 @@ public class Paper extends Actor
     Label room1Text = new Label("Mom took Teddy.\n She ripped him\n apart and then \nthrew him away\n saying I was\n being childish. I\n want Teddy back,\n I'm scared.", 30);
     
     // Large paper text for room 3
-    Label room3Text = new Label("I’ve been wanting to read a good old murder mystery kind of story, but I heard there’s only story about murder in this hospital. I have no idea which room’s bookshelf has it though.", 30);
+    Label room3Text = new Label("I’ve been wanting\n to read a murder\n mystery story but\n I heard there’s \n only one in this\n hospital. I have no\n idea which room's \nbookshelf has it.", 28);
     
     /**
      * Act - do whatever the Paper wants to do. This method is called whenever
@@ -66,13 +66,13 @@ public class Paper extends Actor
             GameWorld game = (GameWorld) getWorld();
             if(isTouching(MainCharacter.class) && Greenfoot.isKeyDown("e")){
                 game.addObject(largePaper, 300, 200);
-                room1Text.setFillColor(Color.BLACK);
-                room1Text.setLineColor(Color.WHITE);
-                game.addObject(room1Text, 295, 200);
+                room3Text.setFillColor(Color.BLACK);
+                room3Text.setLineColor(Color.WHITE);
+                game.addObject(room3Text, 295, 200);
             }
             if(isTouching(MainCharacter.class) == false){
                 game.removeObject(largePaper);
-                game.removeObject(room1Text);
+                game.removeObject(room3Text);
             }
         }
     }

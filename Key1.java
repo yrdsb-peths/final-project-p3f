@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Key1 extends Actor
 {
-    public static Label foundHalfKey = new Label("You found half a key", 30);
+    public static Label foundHalfKey = new Label("You found half a key\n now go to room 3", 30);
     /**
      * Act - do whatever the Key1 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

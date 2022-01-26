@@ -55,6 +55,7 @@ public class GameWorld extends World
     // Create objects of actors
     Paper tutorialPaper = new Paper();
     Paper room1Letter = new Paper();
+    Paper room3Letter = new Paper();
     Demon demon = new Demon();
     Basket emptyBasket = new Basket();
     EvilBear bear = new EvilBear();
@@ -198,6 +199,7 @@ public class GameWorld extends World
                 removeObject(Basket.failedRoom1Task);
                 if(Basket.sewedBearProperly){
                     addObject(halfRoom4Key, 45, 230);
+                    Basket.sewedBearProperly = false;
                 }
                 if(Basket.sewedBearFail){
                     addObject(bear, 530, 200);
@@ -248,7 +250,10 @@ public class GameWorld extends World
                     pieceThree = true;
                 }
             }
-        
+            if(hallwayHalfKey){
+                addObject(emptyBasket, 290, 205);
+                addObject(room3Letter, 330, 185);
+            }
             if(player.getY() > 250){
                 removeObject(room3TrashText);
                 leaveRoom();
