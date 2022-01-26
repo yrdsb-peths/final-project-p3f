@@ -1,15 +1,16 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Key1 here.
+ * Keys
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Sameer Hidery, Murtaza Asrani, Keira Sutharsanaraj 
  */
 public class Keys extends Actor
 {
+    // Create labels
     public static Label foundHalfKey = new Label("You found half an exit key\n now go to room 3", 30);
     public static Label foundOtherHalfKey = new Label("You found the other half of the exit key \n use it to escape", 30);
+    
     /**
      * Act - do whatever the Key1 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -18,6 +19,8 @@ public class Keys extends Actor
     {
         checkGotKey();
     }
+    
+    // Check which half of the key gets picked up
     public void checkGotKey(){
         GameWorld game = (GameWorld) getWorld();
         if(GameWorld.hallwayFirstHalfKey){
