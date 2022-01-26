@@ -19,7 +19,7 @@ public class GameWorld extends World
 
     boolean lockedRoom1, lockedRoom2, lockedRoom3, lockedRoom4 = true, lockedRoom5, lockedRoom6 = true;
     
-    public static boolean room1Trash, room1Basket, room2Trash, room2NeedleAndThread, room3Trash, room3Basket, room1Book, room3Book, room5Book; 
+    public static boolean room1Trash, room1Basket, room2Trash, room2NeedleAndThread, room3Trash, room3Basket, room1Book, room5Book; 
     public static boolean leftHallwayTrash, rightHallwayTrash, hallwayFirstHalfKey, hallwaySecondHalfKey;
     
     public static boolean pieceOne, pieceTwo, pieceThree, pieceFour, pieceFive, needleAndThread;
@@ -50,7 +50,6 @@ public class GameWorld extends World
     Label leftHallwayTrashText = new Label("You found a limb \n(piece four of five)", 30);
     Label rightHallwayTrashText = new Label("You found a limb \n(piece five of five)", 30);
     Label room1BookText = new Label("You found a book called '25 December Wishes'", 30);
-    Label room3BookText = new Label("You found a book called 'The Knight’s Tale'", 30);
     Label room5BookText = new Label("You found a book called 'REDRUM'", 30);
     
     Label lockedDoor4 = new Label("Door number 4 is locked", 30);
@@ -102,14 +101,13 @@ public class GameWorld extends World
     
     public void removeRoomLabels(){
         if(timer.millisElapsed() > 2500){
-            if(room1Basket || room3Basket || room1Trash || room2Trash || room3Trash || room1Book || room3Book || room5Book || leftHallwayTrash || rightHallwayTrash || hallwayFirstHalfKey || hallwaySecondHalfKey){
+            if(room1Basket || room3Basket || room1Trash || room2Trash || room3Trash || room1Book || room5Book || leftHallwayTrash || rightHallwayTrash || hallwayFirstHalfKey || hallwaySecondHalfKey){
                 removeObject(Basket.failedRoom1Task);
                 removeObject(Basket.failedRoom3Task);
                 removeObject(room1TrashText);
                 removeObject(room2TrashText);
                 removeObject(room3TrashText);
                 removeObject(room1BookText);
-                removeObject(room3BookText);
                 removeObject(room5BookText);
                 removeObject(leftHallwayTrashText);
                 removeObject(rightHallwayTrashText);
@@ -267,19 +265,12 @@ public class GameWorld extends World
                     pieceThree = true;
                 }
             }
-            if(!room3Book){
-                if(player.getX() < 290 && player.getY() < 210 && Greenfoot.isKeyDown("e") && hallwayFirstHalfKey){
-                    addObject(room3BookText, 300, 320);
-                    room3Book = true;
-                }
-            }
             if(hallwayFirstHalfKey){
                 addObject(emptyBasket, 290, 205);
                 addObject(note, 330, 185);
             }
             if(player.getY() > 250){
                 removeObject(room3TrashText);
-                removeObject(room3BookText);
                 removeObject(emptyBasket);
                 removeObject(note);
                 removeObject(Basket.failedRoom3Task);
