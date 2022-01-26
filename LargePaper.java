@@ -1,10 +1,9 @@
 import greenfoot.*;
 
 /**
- * Write a description of class LargePaper here.
+ * Large paper
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Sameer Hidery, Murtaza Asrani, Keira Sutharsanaraj
  */
 public class LargePaper extends Actor 
 {
@@ -13,8 +12,7 @@ public class LargePaper extends Actor
      */
     public void act()
     {
-        setImage("Objects/LargePaper.png");
-        
+        setImage("Objects/LargePaper.png");        
     }
 
 }

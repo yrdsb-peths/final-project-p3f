@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=LargePaper
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ LargePaper\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Large\ paper\r\n\ \r\n\ @author\ Sameer\ Hidery,\ Murtaza\ Asrani,\ Keira\ Sutharsanaraj\r\n
 comment1.params=
 comment1.target=void\ act()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ LargePaper\r\n
