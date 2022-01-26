@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class GameWorld here.
+ * The world that the game is in
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Sameer Hidery, Murtaza Asrani, Keira Sutharsanaraj
  */
 public class GameWorld extends World
 {
