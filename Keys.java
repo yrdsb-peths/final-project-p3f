@@ -31,6 +31,7 @@ public class Keys extends Actor
             setImage("Objects/Keys-2.png");
             if(isTouching(MainCharacter.class) && Greenfoot.isKeyDown("e")){
                 game.addObject(foundOtherHalfKey, 300, 320);
+                GameWorld.lockedRoom6 = false;
                 getWorld().removeObject(this);
             }
         }

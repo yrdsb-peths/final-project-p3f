@@ -53,23 +53,22 @@ public class Basket extends Actor
         }
     }
     public void checkCorrectBook(){
-        if(GameWorld.isRoom3 && GameWorld.hallwayFirstHalfKey){
-            if(isTouching(MainCharacter.class) && Greenfoot.isKeyDown("e")){
-                if(GameWorld.room5Book = true){
-                    bookBasketCorrect = true;
-                    achieved.play();
-                }
-                else{
-                    bookBasketFailed = true;
-                    failed.play();
-                    GameWorld game = (GameWorld) getWorld();
-                    game.addObject(failedRoom3Task, 300, 320);
-                    GameWorld.timer.mark();
-                }
+        if(GameWorld.isRoom3 && GameWorld.hallwayFirstHalfKey && isTouching(MainCharacter.class) && Greenfoot.isKeyDown("e")){
+            GameWorld.room3Basket = true;
+            if(GameWorld.room5Book == true){
+                bookBasketCorrect = true;
+                achieved.play();
             }
-            if(bookBasketCorrect){
-                setImage("Objects/BookBasket.png");
+            else{
+                bookBasketFailed = true;
+                failed.play();
+                GameWorld game = (GameWorld) getWorld();
+                game.addObject(failedRoom3Task, 300, 320);
+                GameWorld.timer.mark();
             }
+        }
+        if(bookBasketCorrect){
+            setImage("Objects/BookBasket.png");
         }
     }
 }

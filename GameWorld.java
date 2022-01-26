@@ -10,14 +10,14 @@ public class GameWorld extends World
 {
     public static boolean isTutorial1, isTutorial2; 
     public static boolean isFoyer, isHallway;
-    public static boolean isRoom1, isRoom2, isRoom3, isRoom4, isRoom5, isRoom6; 
+    public static boolean isRoom1, isRoom2, isRoom3, isRoom5; 
     public static boolean wakeUpInRoom;
     
     public static boolean roomBoundaries;
 
     public boolean spawned;
 
-    boolean lockedRoom1, lockedRoom2, lockedRoom3, lockedRoom4 = true, lockedRoom5, lockedRoom6 = true;
+    public static boolean lockedRoom1, lockedRoom2, lockedRoom3, lockedRoom4 = true, lockedRoom5, lockedRoom6 = true;
     
     public static boolean room1Trash, room1Basket, room2Trash, room2NeedleAndThread, room3Trash, room3Basket, room1Book, room5Book; 
     public static boolean leftHallwayTrash, rightHallwayTrash, hallwayFirstHalfKey, hallwaySecondHalfKey;
@@ -94,8 +94,9 @@ public class GameWorld extends World
         isFoyer = false;
         isHallway = false;
         wakeUpInRoom = false;
-        boolean isRoom1 = false, isRoom2 = false, isRoom3 = false, isRoom4 = false, isRoom5 = false, isRoom6 = false;
-        boolean room1Trash = false, room1Basket = false, room2Trash = false, room2Drawer = false, room3Trash = false, leftHallwayTrash = false, rightHallwayTrash = false;
+        boolean isRoom1 = false, isRoom2 = false, isRoom3 = false, isRoom5 = false;
+        boolean room1Trash = false, room1Basket = false, room3Basket = false, room2Trash = false, room2Drawer = false, room3Trash = false, room1Book = false, room5Book = false; 
+        boolean leftHallwayTrash = false, rightHallwayTrash = false;
         boolean pieceOne = false, pieceTwo = false, pieceThree = false, pieceFour = false, pieceFive = false, needleAndThread = false;
     } 
     
@@ -137,9 +138,7 @@ public class GameWorld extends World
         isRoom1 = false;
         isRoom2 = false;
         isRoom3 = false;
-        isRoom4 = false;
         isRoom5 = false;
-        isRoom6 = false;
         isHallway = true;
     }
 
@@ -290,14 +289,6 @@ public class GameWorld extends World
             }
         }
         
-        if(isRoom4){
-            createRoom();
-            if(player.getY() > 250){
-                leaveRoom();
-                respawn(335, 185);
-            }
-        }
-        
         if(isRoom5){
             createRoom();
             if(!room5Book){
@@ -310,14 +301,6 @@ public class GameWorld extends World
                 removeObject(room5BookText);
                 leaveRoom();
                 respawn(435, 185);
-            }
-        }
-        
-        if(isRoom6){
-            createRoom();
-            if(player.getY() > 250){
-                leaveRoom();
-                respawn(530, 185);
             }
         }
         
@@ -364,10 +347,7 @@ public class GameWorld extends World
             }
         }
         if(player.getX() > 320 & player.getX() < 350 && player.getY() == 185 && Greenfoot.isKeyDown("e")){
-            if(!lockedRoom4){
-                isRoom4 = true;
-            }
-            else{
+            if(lockedRoom4){
                 addObject(lockedDoor4, 300, 330);
             }
         }
@@ -379,7 +359,8 @@ public class GameWorld extends World
         }
         if(player.getX() > 510 & player.getX() < 550 && player.getY() == 185 && Greenfoot.isKeyDown("e")){
             if(!lockedRoom6){
-                removeObject(player);
+                GameWon won = new GameWon();
+                Greenfoot.setWorld(won);
             }
             else{
                 addObject(lockedDoor6, 300, 330);
