@@ -55,6 +55,9 @@ public class GameWorld extends World
     Label lockedDoor4 = new Label("Door number 4 is locked", 30);
     Label lockedDoor6 = new Label("Door number 6 is locked", 30);
     
+    //Sound Effects
+    GreenfootSound rain = new GreenfootSound("Sound Effect - 'Rain & Thunder'.wav");
+    
     // Create objects of actors
     Paper note = new Paper();
     Demon demon = new Demon();
@@ -76,14 +79,24 @@ public class GameWorld extends World
     }
     
     public void act(){
+        rainSound();
         changeWorlds();
         checkCrossTutorials();
-        
         removeRoomLabels();
         
         if(Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("s") || Greenfoot.isKeyDown("d")){
             removeObject(lockedDoor4);
             removeObject(lockedDoor6);
+        }
+    }
+    
+    public void rainSound(){
+        if(isTutorial1 || isTutorial2 || isFoyer){
+            rain.setVolume(0);
+            rain.play();
+        }else{
+            rain.setVolume(25);
+            rain.play();
         }
     }
     
