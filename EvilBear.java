@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Bear here.
+ * Evil bear
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Sameer Hidery, Murtaza Asrani, Keira Sutharsanaraj
  */
 public class EvilBear extends Actor
 {
@@ -18,9 +17,9 @@ public class EvilBear extends Actor
         if(GameWorld.timer.millisElapsed() > 1500){
             checkY();
         }
-        
     }
     
+    // Method to move the bear and remove it if in contact with the player
     public void checkY(){
         if(isTouching(MainCharacter.class)){
             getWorld().removeObject(this);
@@ -33,6 +32,10 @@ public class EvilBear extends Actor
         }
     }
         
+    /**
+     * Recursive method to set the speed of the moving demon
+     * @param n - integer that sets the speed
+     */ 
     public int deltaX(int n){
         if(n >= 4){
             return 0;

@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=EvilBear
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Bear\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Evil\ bear\r\n\ \r\n\ @author\ Sameer\ Hidery,\ Murtaza\ Asrani,\ Keira\ Sutharsanaraj\r\n
 comment1.params=
 comment1.target=void\ act()
 comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Bear\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
@@ -8,4 +8,5 @@ comment2.params=
 comment2.target=void\ checkY()
 comment3.params=n
 comment3.target=int\ deltaX(int)
+comment3.text=\r\n\ Recursive\ method\ to\ set\ the\ speed\ of\ the\ moving\ demon\r\n\ @param\ n\ -\ integer\ that\ sets\ the\ speed\r\n
 numComments=4

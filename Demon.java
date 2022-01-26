@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Demon designed to attack the main character
  * 
- * Sameer Hidery, Murtaza Asrani, Keira Sutharsanaraj
+ * @author Sameer Hidery, Murtaza Asrani, Keira Sutharsanaraj
  */
 public class Demon extends Actor
 {
@@ -31,7 +31,10 @@ public class Demon extends Actor
         }
     }
     
-    // Recursive method to set the speed of the moving demon
+    /**
+     * Recursive method to set the speed of the moving demon
+     * @param n - integer that sets the speed
+     */ 
     public int deltaX(int n){
         if(n >= 4){
             return 0;
