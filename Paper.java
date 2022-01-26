@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Paper here.
+ * Paper
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Sameer Hidery, Murtaza Asrani, Keira Sutharsanaraj
  */
 public class Paper extends Actor
 {
@@ -30,6 +29,7 @@ public class Paper extends Actor
         worldPapers();
     }  
     
+    // Method to display the paper with the corresponding background of the game world
     public void worldPapers(){
         GameWorld game = (GameWorld) getWorld();
         if(isTouching(MainCharacter.class) && Greenfoot.isKeyDown("e")){
